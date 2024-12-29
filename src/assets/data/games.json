@@ -1,0 +1,31 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "title": "왕초보 대장장이의 톱니바퀴 가게",
+      "description": "손님의 주문을 받고 올바른 톱니바퀴를 완성하자!",
+      "imageUrl": "public/images/gearsanddream.jpg",
+      "platform": ["Windows", "Mac"],
+      "link": "https://github.com/TeamODD/gears-and-dreams/releases/tag/alpha-v1.1.0",
+      "developer": "강주현 장은수 정한웅 김지원 황정원"
+    },
+    {
+      "id": 2,
+      "title": "Punch Gear",
+      "description": "리듬에 맞춰 날라오는 톱니바퀴를 맞춰라!",
+      "imageUrl": "public/images/punchgear.png",
+      "platform": ["Windows", "Mac"],
+      "link": "https://github.com/TeamODD/Punch-Gear/releases/tag/release",
+      "developer": "홍기서 김성현 김태명 이형빈 김유빈"
+    },
+    {
+      "id": 2,
+      "title": "Option, but not optional",
+      "description": "용사는 어쩔 수 없이 톱니바퀴를 들고 다니기 시작한다.",
+      "imageUrl": "public/images/optionnotoptional.png",
+      "platform": ["Windows", "Mac"],
+      "link": "https://github.com/TeamODD/Punch-Gear/releases/tag/release",
+      "developer": "김지현 권예준 이상원 김지성 박기범"
+    }
+  ]
+}

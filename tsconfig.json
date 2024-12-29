@@ -1,4 +1,9 @@
 {
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+    // ... 다른 설정들
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
