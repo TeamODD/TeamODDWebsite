@@ -13,7 +13,7 @@
       "id": 2,
       "title": "Punch Gear",
       "description": "리듬에 맞춰 날라오는 톱니바퀴를 맞춰라!",
-      "imageUrl": "public/images/punchgear.png",
+      "imageUrl": "images/punchgear.png",
       "platform": ["Windows", "Mac"],
       "link": "https://github.com/TeamODD/Punch-Gear/releases/tag/release",
       "developer": "홍기서 김성현 김태명 이형빈 김유빈"
@@ -22,9 +22,9 @@
       "id": 2,
       "title": "Option, but not optional",
       "description": "용사는 어쩔 수 없이 톱니바퀴를 들고 다니기 시작한다.",
-      "imageUrl": "public/images/optionnotoptional.png",
+      "imageUrl": "images/optionnotoptional.png",
       "platform": ["Windows", "Mac"],
-      "link": "https://github.com/TeamODD/Punch-Gear/releases/tag/release",
+      "link": "https://github.com/TeamODD/option-but-not-optional/releases/tag/RealFinalBuild ",
       "developer": "김지현 권예준 이상원 김지성 박기범"
     }
   ]
