@@ -37,6 +37,7 @@
   margin-bottom: 146px;
   flex-shrink: 0;
   border-radius: 20px;
+  border-style: none;
   background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
   color: #fff;
   font-size: 24px;
@@ -56,6 +57,9 @@
   list-style-position: inside;
 }
 
-/* 
 .join-button:hover {
-} */
+  color: linear-gradient(90deg, #f5ad63 0%, #26bef0 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
