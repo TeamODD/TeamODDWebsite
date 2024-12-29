@@ -8,7 +8,7 @@
 
 ```json
     {
-      "id": 1,
+      "id": 1, ---> 다른 게임과 겹치지 않게 설정
       "title": "게임 제목",
       "description": "게임 설명",
       "imageUrl": "이미지 경로(images/XXXX.png)", --> ***public/ <-이건 빼야함!
