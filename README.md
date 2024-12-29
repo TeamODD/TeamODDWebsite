@@ -1,50 +1,22 @@
-# React + TypeScript + Vite
+# TEAMODD 게임 목록 사이트
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 게임 추가 방법
 
-Currently, two official plugins are available:
+1. `src\data\games.json`을 찾는다.
+2. 다음 형식에 맞게 게임 정보를 추가 한다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+```json
+    {
+      "id": 1,
+      "title": "게임 제목",
+      "description": "게임 설명",
+      "imageUrl": "이미지 경로(images/XXXX.png)",
+      "platform": "호환 플랫폼(ex -> ["Windows", "Mac"] array 형식으로)",
+      "link": "다운 받을 수 있는 링크",
+      "developer": "개발자 이름"
     },
-  },
-})
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+호환 플랫폼은 작성안해도 무관.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+3. 커밋 -> 푸쉬 후 빌드
