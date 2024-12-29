@@ -4,7 +4,7 @@
       "id": 1,
       "title": "왕초보 대장장이의 톱니바퀴 가게",
       "description": "손님의 주문을 받고 올바른 톱니바퀴를 완성하자!",
-      "imageUrl": "public/images/gearsanddream.jpg",
+      "imageUrl": "images/gearsanddream.jpg",
       "platform": ["Windows", "Mac"],
       "link": "https://github.com/TeamODD/gears-and-dreams/releases/tag/alpha-v1.1.0",
       "developer": "강주현 장은수 정한웅 김지원 황정원"
