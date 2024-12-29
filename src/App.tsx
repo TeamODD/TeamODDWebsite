@@ -1,24 +1,37 @@
 import "./styles/App.css";
-import GameCard from "./components/GameCard";
-import gamesData from "./assets/data/games.json";
-import { GamesData } from "./types/game";
+import Header from "./components/Header";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import Projects from "./routes/Projects";
+import Home from "./routes/Home";
+import { useEffect } from "react";
 
 function App() {
-  const typedGamesData: GamesData = gamesData;
+  return (
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+function AppContent() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const queryPath = window.location.search.slice(1);
+    if (queryPath) {
+      navigate(queryPath);
+    }
+  }, [navigate]);
 
   return (
     <div className="App">
       <header>
-        <h1>
-          <strong>TeamODD</strong>
-        </h1>
-        한성대학교 게임 개발 동아리
+        <Header />
       </header>
-      <main className="games-container">
-        {typedGamesData.games.map((game) => (
-          <GameCard key={game.id} game={game} />
-        ))}
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
     </div>
   );
 }

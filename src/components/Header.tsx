@@ -1,0 +1,51 @@
+import { useLocation } from "react-router-dom";
+import "../styles/Header.css";
+
+function Header() {
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
+
+  return (
+    <div className="header">
+      <header className="headerObj">
+        <h1 className="logo">
+          <img src="logo.svg" alt="" className="logo-image" />
+          TEAMODD
+        </h1>
+        <nav>
+          <ul className="nav-links">
+            <li>
+              <a className={isActive("/") ? "active" : ""} href="/">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a
+                className={isActive("/projects") ? "active" : ""}
+                href="/projects"
+              >
+                프로젝트
+              </a>
+            </li>
+            <li>
+              <a className={isActive("/join") ? "active" : ""} href="/join">
+                가입안내
+              </a>
+            </li>
+            <li>
+              <a
+                className={isActive("/contact") ? "active" : ""}
+                href="/contact"
+              >
+                문의하기
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+  );
+}
+
+export default Header;

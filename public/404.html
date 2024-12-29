@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      // GitHub Pages에서 잘못된 경로 접근 시 index.html로 리다이렉트
+      var path = window.location.pathname;
+      window.location.replace("/?" + path);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to your app...</p>
+  </body>
+</html>
