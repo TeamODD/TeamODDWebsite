@@ -11,8 +11,8 @@
       "id": 1, ---> 다른 게임과 겹치지 않게 설정
       "title": "게임 제목",
       "description": "게임 설명",
-      "imageUrl": "이미지 경로(images/XXXX.png)", --> ***public/ <-이건 빼야함!
-      "platform": "호환 플랫폼", ---> ***비워도 됨
+      "imageUrl": "이미지 경로(images/XXXX.png)", --> public/ <-이건 빼야함!
+      "platform": "호환 플랫폼", ---> 비워도 됨(임시)
       "link": "다운 받을 수 있는 링크",
       "developer": "개발자 이름"
     },
