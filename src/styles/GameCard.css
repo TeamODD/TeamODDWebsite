@@ -65,6 +65,10 @@
   color: #888;
 }
 
+.game-description {
+  white-space: pre-wrap;
+}
+
 h1 {
   font-size: 3rem;
   color: white;

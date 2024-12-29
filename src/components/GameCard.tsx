@@ -12,7 +12,7 @@ const GameCard = ({ game }: GameCardProps) => {
       <BlurImage src={game.imageUrl} alt={game.title} className="game-image" />
       <div className="game-info">
         <h2 data-full-title={game.title}>{game.title}</h2>
-        <p>{game.description}</p>
+        <p className="game-description">{game.description}</p>
         <div className="game-details">
           <span>{game.developer}</span>
         </div>

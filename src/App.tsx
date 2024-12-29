@@ -2,9 +2,11 @@ import "./styles/App.css";
 import Header from "./components/Header";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
+import Footer from "./components/Footer";
 
 const Home = lazy(() => import("./routes/Home"));
 const Projects = lazy(() => import("./routes/Projects"));
+const Join = lazy(() => import("./routes/Join"));
 
 function App() {
   return (
@@ -33,7 +35,11 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/join" element={<Join />} />
       </Routes>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

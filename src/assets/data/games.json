@@ -63,27 +63,27 @@
     {
       "id": 7,
       "title": "P의 시험기간",
-      "description": "<제1회 게임잼 우승작> 계획성은 1도 없는 극 p의 벼락치기 시험공부 준비하기",
+      "description": "<제1회 게임잼 우승작>\n계획성은 1도 없는 극 p의 벼락치기 시험공부 준비하기",
       "year": "2024",
       "project": "제1회 게임잼",
       "imageUrl": "images/ptest.png",
       "link": "https://drive.google.com/drive/folders/1pEr0uJui4gkMQ-8kYg752oaZRpReZVXi?usp=drive_link",
-      "developer": "정보연 정한웅 김영찬 김지아"
+      "developer": "채민수 손한솔 권예준 이형빈"
     },
     {
       "id": 8,
       "title": "로맨틱 타이밍",
-      "description": "<제1회 게임잼 준우승작> 본격 타이밍 액션 미소녀 연애 시뮬레이터",
+      "description": "<제1회 게임잼 준우승작>\n본격 타이밍 액션 미소녀 연애 시뮬레이터",
       "year": "2024",
       "project": "제1회 게임잼",
       "imageUrl": "images/romantictiming.png",
       "link": "https://drive.google.com/drive/folders/1pEr0uJui4gkMQ-8kYg752oaZRpReZVXi?usp=drive_link",
-      "developer": "정보연 정한웅 김영찬 김지아"
+      "developer": "강주현 정민준 전다연 강혜수"
     },
     {
       "id": 9,
       "title": "토끼굴 속으로",
-      "description": "<제1회 게임잼 3등작> 토끼를 찾아 어두운 숲으로",
+      "description": "<제1회 게임잼 3등작>\n토끼를 찾아 어두운 숲으로",
       "year": "2024",
       "project": "제1회 게임잼",
       "imageUrl": "images/rabbithole.png",

@@ -9,7 +9,7 @@ function Header() {
   return (
     <div className="header">
       <header className="headerObj">
-        <h1 className="logo">
+        <h1 className="logo" onClick={() => (window.location.href = "/")}>
           <img src="logo.svg" alt="" className="logo-image" />
           TEAMODD
         </h1>
