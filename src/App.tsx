@@ -4,7 +4,7 @@ import gamesData from "./assets/data/games.json";
 import { GamesData } from "./types/game";
 
 function App() {
-  const typedGamesData = gamesData as GamesData;
+  const typedGamesData: GamesData = gamesData;
 
   return (
     <div className="App">
