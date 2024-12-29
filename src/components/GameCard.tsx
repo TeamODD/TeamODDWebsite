@@ -1,4 +1,5 @@
 import { Game } from "../types/game";
+import BlurImage from "./BlurImage";
 
 interface GameCardProps {
   game: Game;
@@ -7,13 +8,7 @@ interface GameCardProps {
 const GameCard = ({ game }: GameCardProps) => {
   return (
     <div className="game-card" onClick={() => window.open(game.link, "_blank")}>
-      <img
-        src={game.imageUrl}
-        alt={game.title}
-        className="game-image"
-        loading="lazy"
-        decoding="async"
-      />
+      <BlurImage src={game.imageUrl} alt={game.title} className="game-image" />
       <div className="game-info">
         <h2 data-full-title={game.title}>{game.title}</h2>
         <p>{game.description}</p>
