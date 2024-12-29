@@ -1,5 +1,6 @@
 import { Game } from "../types/game";
 import BlurImage from "./BlurImage";
+import "../styles/GameCard.css";
 
 interface GameCardProps {
   game: Game;
@@ -13,7 +14,7 @@ const GameCard = ({ game }: GameCardProps) => {
         <h2 data-full-title={game.title}>{game.title}</h2>
         <p>{game.description}</p>
         <div className="game-details">
-          <span>개발: {game.developer}</span>
+          <span>{game.developer}</span>
         </div>
       </div>
     </div>

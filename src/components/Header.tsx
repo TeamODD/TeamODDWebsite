@@ -16,26 +16,26 @@ function Header() {
         <nav>
           <ul className="nav-links">
             <li>
-              <a className={isActive("/") ? "active" : ""} href="/">
+              <a className={isActive("/") ? "activeList" : ""} href="/">
                 About Us
               </a>
             </li>
             <li>
               <a
-                className={isActive("/projects") ? "active" : ""}
+                className={isActive("/projects") ? "activeList" : ""}
                 href="/projects"
               >
                 프로젝트
               </a>
             </li>
             <li>
-              <a className={isActive("/join") ? "active" : ""} href="/join">
+              <a className={isActive("/join") ? "activeList" : ""} href="/join">
                 가입안내
               </a>
             </li>
             <li>
               <a
-                className={isActive("/contact") ? "active" : ""}
+                className={isActive("/contact") ? "activeList" : ""}
                 href="/contact"
               >
                 문의하기

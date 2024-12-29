@@ -2,11 +2,13 @@
   background-color: #1a1a1a;
   display: flex;
   justify-content: center;
+  height: 60px; /* Adjust the height as needed */
 }
 
 .headerObj {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Align items vertically in the center */
   padding: 0;
   width: 90%;
   text-align: center;
@@ -20,22 +22,27 @@ a {
 }
 
 .logo {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
+  line-height: 60px; /* Ensure the same line-height as the header height */
+  margin-bottom: 30px;
 }
 
 .logo-image {
   width: 50px;
   height: 50px;
+  vertical-align: middle; /* Align the image vertically in the middle */
 }
 
 .nav-links {
   list-style-type: none;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Align items vertically in the center */
 }
 
 .nav-links li {
-  display: inline-block;
-  margin-left: 4rem;
+  margin-left: 4rem; /* Adjust the margin as needed */
+  margin-bottom: 10px;
 }
 
 .nav-links li a:hover {
@@ -45,7 +52,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-.active {
+.activeList {
   background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
   background-clip: text;
   -webkit-background-clip: text;

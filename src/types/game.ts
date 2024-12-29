@@ -2,8 +2,9 @@ export interface Game {
   id: number;
   title: string;
   description: string;
+  year: string;
+  project: string;
   imageUrl: string;
-  platform: string[];
   link: string;
   developer: string;
 }
