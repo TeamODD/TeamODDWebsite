@@ -13,7 +13,7 @@
       "description": "<제1회 게임잼 3등작>\n토끼를 찾아 어두운 숲으로", --> 줄바꿈시 \n 넣으시면 됩니다.
       "year": "2024",
       "project": "제1회 게임잼",
-      "imageUrl": "images/rabbithole.png", --> **중요** public/images/rabbithole.png가 아님!!! public/ 빼야함
+      "imageUrl": "images/rabbithole.png", --> **중요** "public/images/rabbithole.png" 가 아님!!! "public/" 빼야함
       "link": "https://drive.google.com/file/d/1WnUyXqBJ4ekabDyCW7hQRUaTY_qC1Ymw/view?usp=drive_link", ---> 게임 다운 링크
       "developer": "정보연 정한웅 김영찬 김지아",
       "placeholder": "L238-$W94mxwDzs=-tNDIQaw%6og" ---> 비워놓아도 OK, 자세한건 후술
