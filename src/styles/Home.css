@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: #000;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .home-image-text-title {
@@ -38,7 +38,7 @@
   /* object-fit: cover; */
   object-position: center;
   position: absolute;
-  filter: brightness(0.4);
+  filter: brightness(0.4) blur(3px);
 }
 
 @keyframes fadeIn {

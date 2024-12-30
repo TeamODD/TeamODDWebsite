@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import gamesData from "../assets/data/games.json";
 import { GamesData } from "../types/game";
 import GameCard from "../components/GameCard";
@@ -10,27 +10,33 @@ function Projects() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const years = [
-    "all",
-    ...new Set(typedGamesData.games.map((game) => game.year)),
-  ]
-    .sort()
-    .reverse();
+  const years = useMemo(
+    () =>
+      ["all", ...new Set(typedGamesData.games.map((game) => game.year))]
+        .sort()
+        .reverse(),
+    [typedGamesData.games]
+  );
 
-  const filteredGames =
-    selectedYear === "all"
-      ? typedGamesData.games
-      : typedGamesData.games.filter((game) => game.year === selectedYear);
+  const filteredGames = useMemo(
+    () =>
+      selectedYear === "all"
+        ? typedGamesData.games
+        : typedGamesData.games.filter((game) => game.year === selectedYear),
+    [selectedYear, typedGamesData.games]
+  );
 
-  // 게임을 프로젝트 유형별로만 그룹화
-  const groupedGames =
-    selectedYear !== "all"
-      ? filteredGames.reduce((acc, game) => {
-          if (!acc[game.project]) acc[game.project] = [];
-          acc[game.project].push(game);
-          return acc;
-        }, {} as Record<string, typeof filteredGames>)
-      : {};
+  const groupedGames = useMemo(
+    () =>
+      selectedYear !== "all"
+        ? filteredGames.reduce((acc, game) => {
+            if (!acc[game.project]) acc[game.project] = [];
+            acc[game.project].push(game);
+            return acc;
+          }, {} as Record<string, typeof filteredGames>)
+        : {},
+    [selectedYear, filteredGames]
+  );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

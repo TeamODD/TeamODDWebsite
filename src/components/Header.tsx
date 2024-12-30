@@ -15,7 +15,7 @@ function Header() {
         </h1>
         <nav>
           <ul className="nav-links">
-            <li>
+            <li style={{ letterSpacing: "0.3px" }}>
               <a className={isActive("/") ? "activeList" : ""} href="/">
                 About Us
               </a>

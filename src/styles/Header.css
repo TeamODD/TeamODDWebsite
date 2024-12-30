@@ -26,6 +26,14 @@ a {
   font-weight: 700;
   line-height: 60px; /* Ensure the same line-height as the header height */
   margin-bottom: 30px;
+  letter-spacing: normal; /* 추가: 자간 명시적 설정 */
+  white-space: nowrap; /* 추가: 텍스트 줄바꿈 방지 */
+  display: inline-block; /* 추가: 블록 레벨 지정 */
+}
+
+.logo a {
+  letter-spacing: normal; /* 추가: 링크에도 동일한 자간 적용 */
+  font-size: 30px; /* 추가: 폰트 크기 명시적 지정 */
 }
 
 .logo:hover {
@@ -47,6 +55,7 @@ a {
 .nav-links li {
   margin-left: 4rem; /* Adjust the margin as needed */
   margin-bottom: 10px;
+  letter-spacing: normal;
 }
 
 .nav-links li a:hover {
@@ -54,11 +63,17 @@ a {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition: text-shadow 0.2s ease;
+  text-shadow: 0px 0px 5px #fff, -2px 4px 20px #26bef0, 2px -4px 20px #f5ad63;
+  /* animation: glow 0.3s ease-in infinite; */
 }
 
 .activeList {
   background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
   background-clip: text;
+  font-weight: bold;
+  letter-spacing: 0;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 5px #fff, -2px 4px 25px #26bef0, 2px -4px 25px #f5ad63;
 }

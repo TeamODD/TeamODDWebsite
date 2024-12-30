@@ -9,7 +9,12 @@ interface GameCardProps {
 const GameCard = ({ game }: GameCardProps) => {
   return (
     <div className="game-card" onClick={() => window.open(game.link, "_blank")}>
-      <BlurImage src={game.imageUrl} alt={game.title} className="game-image" />
+      <BlurImage
+        src={game.imageUrl}
+        alt={game.title}
+        className="game-image"
+        placeholder={game.placeholder}
+      />
       <div className="game-info">
         <h2 data-full-title={game.title}>{game.title}</h2>
         <p className="game-description">{game.description}</p>

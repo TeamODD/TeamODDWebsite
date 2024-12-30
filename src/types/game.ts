@@ -7,6 +7,7 @@ export interface Game {
   imageUrl: string;
   link: string;
   developer: string;
+  placeholder: string;
 }
 
 export interface GamesData {
