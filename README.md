@@ -14,17 +14,17 @@
 7. 몇 분뒤 실제 사이트에 반영
 
 ---
-
-id: 게임 구분을 위한 고유 번호\
- title: 게임 제목\
- description: 1~2줄 정도의 게임 간단 설명. \n을 넣어 줄바꿈 가능\
- year: 제작 연도\
- project: 어떤 프로젝트에서 만들었는지 (예시: 제1회 게임잼, 2024 하계 정규 프로젝트)\
- imageUrl: 위에서 넣은 이미지 경로. **무조건 `images/games/이미지이름.jpg(.png, .webp ...)` 로 작성**\
- link: 게임 다운로드 링크\
- developer: 개발 참여 인원 이름\
+id: 게임 구분을 위한 고유 번호<br /><br />
+ title: 게임 제목<br /><br />
+ description: 1~2줄 정도의 게임 간단 설명. \n을 넣어 줄바꿈 가능<br /><br />
+ year: 제작 연도<br /><br />
+ project: 어떤 프로젝트에서 만들었는지 (예시: 제1회 게임잼, 2024 하계 정규 프로젝트)<br /><br />
+ imageUrl: 위에서 넣은 이미지 경로. **무조건 `images/games/이미지이름.jpg(.png, .webp ...)` 로 작성**<br /><br />
+ link: 게임 다운로드 링크<br /><br />
+ developer: 개발 참여 인원 이름<br /><br />
  placeholder: 플레이스 홀더. HashCode가 들어감. 자세한건 후술
-
+ 
+---
 예시
 
 ```json
