@@ -1,12 +1,13 @@
-.home_contanier {
+.home-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh; /* 변경된 부분 */
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #000;
   overflow-x: hidden;
+  margin-bottom: 20px; /* 추가된 부분 */
 }
 
 .home-image-text-title {
@@ -19,6 +20,7 @@
   top: 50%;
   left: 10%;
   animation: fadeIn 1s ease-in-out;
+  z-index: 2;
 }
 
 .home-image-text {
@@ -28,6 +30,7 @@
   font-weight: 500;
   line-height: 35px;
   animation: fadeIn 1s ease-in-out;
+  z-index: 2;
 }
 
 .home-image {
@@ -39,6 +42,7 @@
   object-position: center;
   position: absolute;
   filter: brightness(0.4) blur(3px);
+  z-index: 0; /* 변경된 부분 */
 }
 
 @keyframes fadeIn {

@@ -5,7 +5,7 @@ function Home() {
     <div className="home-container">
       <img
         className="home-image"
-        src="images/home/home.png"
+        src="images/home/home.webp"
         loading="lazy"
         alt="home"
       />

@@ -34,11 +34,13 @@ const AppContent = memo(() => {
       <header>
         <Header />
       </header>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/join" element={<Join />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/join" element={<Join />} />
+        </Routes>
+      </main>
       <footer>
         <Footer />
       </footer>

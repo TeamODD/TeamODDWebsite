@@ -3,6 +3,8 @@
   color: #ffffff;
   padding: 20px;
   text-align: center;
+  position: relative;
+  z-index: 1; /* 추가된 부분 */
 }
 
 .footer-title {
