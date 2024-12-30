@@ -44,6 +44,14 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  transition: box-shadow 0.2s ease;
+}
+
+.join-button:hover {
+  color: linear-gradient(90deg, #f5ad63 0%, #26bef0 100%);
+  transition: box-shadow 0.2s ease;
+  box-shadow: -7px 0px 20px #26bef0, 7px 0px 20px #f5ad63;
+  /* -14px 0px 30px #26bef0, 14px 0px 30px #f5ad63*/
 }
 
 .join-rules {
@@ -55,11 +63,4 @@
   font-weight: 400;
   line-height: 50px; /* 250% */
   list-style-position: inside;
-}
-
-.join-button:hover {
-  color: linear-gradient(90deg, #f5ad63 0%, #26bef0 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }

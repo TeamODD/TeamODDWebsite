@@ -1,8 +1,9 @@
 import "./styles/App.css";
 import Header from "./components/Header";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, memo, Suspense, useEffect } from "react";
 import Footer from "./components/Footer";
+import Loading from "./routes/Loading";
 
 const Home = lazy(() => import("./routes/Home"));
 const Projects = lazy(() => import("./routes/Projects"));
@@ -11,13 +12,14 @@ const Join = lazy(() => import("./routes/Join"));
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <Suspense fallback={<div>Loading...</div>}></Suspense>
-      <AppContent />
+      <Suspense fallback={<Loading />}>
+        <AppContent />
+      </Suspense>
     </BrowserRouter>
   );
 }
 
-function AppContent() {
+const AppContent = memo(() => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,6 +44,6 @@ function AppContent() {
       </footer>
     </div>
   );
-}
+});
 
 export default App;

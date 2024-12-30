@@ -58,14 +58,17 @@ a {
   letter-spacing: normal;
 }
 
+.nav-links li a {
+  transition: text-shadow 0.2s ease;
+}
+
 .nav-links li a:hover {
   background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  transition: text-shadow 0.2s ease;
-  text-shadow: 0px 0px 5px #fff, -2px 4px 20px #26bef0, 2px -4px 20px #f5ad63;
-  /* animation: glow 0.3s ease-in infinite; */
+  /* transition: text-shadow 0.2s ease;
+  text-shadow: 0px 0px 5px #fff, -2px 4px 20px #26bef0, 2px -4px 20px #f5ad63; */
 }
 
 .activeList {
@@ -75,5 +78,5 @@ a {
   letter-spacing: 0;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0px 0px 5px #fff, -2px 4px 25px #26bef0, 2px -4px 25px #f5ad63;
+  /* text-shadow: 0px 0px 5px #fff, -2px 4px 25px #26bef0, 2px -4px 25px #f5ad63; */
 }

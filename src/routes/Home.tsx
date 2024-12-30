@@ -3,7 +3,12 @@ import "../styles/Home.css";
 function Home() {
   return (
     <div className="home-container">
-      <img className="home-image" src="images/home/home.png" loading="lazy" />
+      <img
+        className="home-image"
+        src="images/home/home.png"
+        loading="lazy"
+        alt="home"
+      />
       <span className="home-image-text-title">
         Team ODD
         <br />
