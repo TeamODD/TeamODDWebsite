@@ -1,6 +1,7 @@
 # TEAMODD 게임 목록 사이트
 
 ## 게임 추가 방법
+0. `main`브랜치에서 작업한다. `gh-pages`브랜치는 건들면 X
 1. 원하는 썸네일 이미지를 `public/images/`에 넣는다.
 2. `src/data/games.json`을 찾는다.
 3. 다음 예시를 참고하여 게임 정보를 추가 한다.
