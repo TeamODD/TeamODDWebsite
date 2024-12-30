@@ -2,13 +2,16 @@
 
 ## 게임 추가 방법
 
-0. `main`브랜치에서 작업한다. `gh-pages`브랜치는 건들면 X
-1. 원하는 썸네일 이미지를 `public/images/games/`에 넣는다.\
-   -> 되도록 .png, .jpg보다는 **.webp**로 넣는 것이 좋습니다.(이유 : 로딩 적게 걸림) webp변환 사이트 : https://squoosh.app/
-2. `src/data/games.json`을 찾는다.
-3. 다음 예시를 참고하여 게임 정보를 추가 한다.
-4. 저장 후 터미널에서 `npm run deploy`실행
-5. 몇 분뒤 실제 사이트에 반영
+1. `main`브랜치에서 작업한다. `gh-pages`브랜치는 건들면 X
+   
+2. 원하는 썸네일 이미지를 `public/images/games/`에 넣는다.\
+   -> 되도록 .png, .jpg보다는 **.webp**로 넣는 것이 좋습니다.(이유 : 로딩 적게 걸림)\
+   webp변환 사이트 : https://squoosh.app/
+   
+4. `src/data/games.json`을 찾는다.
+5. 다음 예시를 참고하여 게임 정보를 추가 한다.
+6. 저장 후 터미널에서 `npm run deploy`실행
+7. 몇 분뒤 실제 사이트에 반영
 
 ---
 
