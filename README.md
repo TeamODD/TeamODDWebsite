@@ -2,60 +2,10 @@
 
 ## 게임 추가 방법
 
-1. `main`브랜치에서 작업한다. `gh-pages`브랜치는 건들면 X
-   
-2. 원하는 썸네일 이미지를 `public/images/games/`에 넣는다.\
-   -> 되도록 .png, .jpg보다는 **.webp**로 넣는 것이 좋습니다.(이유 : 로딩 적게 걸림)\
-   webp변환 사이트 : https://squoosh.app/
-   
-4. `src/data/games.json`을 찾는다.
-5. 다음 예시를 참고하여 게임 정보를 추가 한다.
-6. 저장 후 터미널에서 `npm run deploy`실행
-7. 몇 분뒤 실제 사이트에 반영
-
----
-id: 게임 구분을 위한 고유 번호<br /><br />
- title: 게임 제목<br /><br />
- description: 1~2줄 정도의 게임 간단 설명. \n을 넣어 줄바꿈 가능<br /><br />
- year: 제작 연도<br /><br />
- project: 어떤 프로젝트에서 만들었는지 (예시: 제1회 게임잼, 2024 하계 정규 프로젝트)<br /><br />
- imageUrl: 위에서 넣은 이미지 경로. **무조건 `images/games/이미지이름.jpg(.png, .webp ...)` 로 작성**<br /><br />
- link: 게임 다운로드 링크<br /><br />
- developer: 개발 참여 인원 이름<br /><br />
- placeholder: 플레이스 홀더. HashCode가 들어감. 자세한건 후술
- 
----
-예시
-
-```json
-{
-  "id": 9,
-  "title": "토끼굴 속으로",
-  "description": "<제1회 게임잼 3등작>\n토끼를 찾아 어두운 숲으로",
-  "year": "2024",
-  "project": "제1회 게임잼",
-  "imageUrl": "images/games/rabbithole.webp",
-  "link": "https://drive.google.com/file/d/1WnUyXqBJ4ekabDyCW7hQRUaTY_qC1Ymw/view?usp=drive_link",
-  "developer": "정보연 정한웅 김영찬 김지아",
-  "placeholder": "L238-$W94mxwDzs=-tNDIQaw%6og"
-}
-```
-
-복붙용 템플릿
-
-```json
-    {
-      "id": ,
-      "title": "",
-      "description": "",
-      "year": "",
-      "project": "",
-      "imageUrl": "images/games/",
-      "link": "",
-      "developer": "",
-      "placeholder": ""
-    },
-```
+1. https://team-odd.web.app/**admin**으로 접속
+2. 로그인 창이 나온다.
+3. 팀오드 구글 계정(이메일, 비번)을 치고 로그인
+4. 게임을 추가, 삭제 할 수 있는 관리자 페이지가 나온다.
 
 ---
 
