@@ -10,6 +10,17 @@ interface BlurImageProps {
   placeholder?: string;
 }
 
+/**
+ * BlurImage 컴포넌트는 이미지가 로드될 때까지 블러 해시를 사용하여
+ * 자리 표시자 이미지를 보여줍니다.
+ *
+ * @param {string} src - 로드할 이미지의 소스 URL.
+ * @param {string} alt - 이미지의 대체 텍스트.
+ * @param {string} className - 추가할 CSS 클래스 이름.
+ * @param {string} placeholder - 블러 해시 자리 표시자 값.
+ *
+ * @returns {JSX.Element} BlurImage 컴포넌트.
+ */
 const BlurImage: FC<BlurImageProps> = ({
   src,
   alt,
