@@ -4,6 +4,38 @@ import { database } from "../firebase";
 import { Game } from "../types/game";
 import "../styles/Admin.css";
 
+/**
+ * 관리자 페이지 컴포넌트입니다. 게임 목록을 불러오고, 새로운 게임을 추가하거나 기존 게임을 삭제할 수 있습니다.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Admin />
+ * )
+ *
+ * @returns {JSX.Element} 관리자 페이지 컴포넌트
+ *
+ * @remarks
+ * - `useState`를 사용하여 게임 목록과 새로운 게임 데이터를 관리합니다.
+ * - `useEffect`를 사용하여 컴포넌트가 마운트될 때 게임 목록을 불러옵니다.
+ * - `fetchGames` 함수는 데이터베이스에서 게임 목록을 불러와 상태를 업데이트합니다.
+ * - `handleSubmit` 함수는 새로운 게임을 데이터베이스에 추가하고 상태를 초기화합니다.
+ * - `handleDelete` 함수는 선택한 게임을 데이터베이스에서 삭제하고 상태를 업데이트합니다.
+ *
+ * @function fetchGames
+ * @async
+ * @description 데이터베이스에서 게임 목록을 불러와 상태를 업데이트합니다.
+ *
+ * @function handleSubmit
+ * @async
+ * @param {React.FormEvent} e - 폼 제출 이벤트
+ * @description 새로운 게임을 데이터베이스에 추가하고 상태를 초기화합니다.
+ *
+ * @function handleDelete
+ * @async
+ * @param {number} gameId - 삭제할 게임의 ID
+ * @description 선택한 게임을 데이터베이스에서 삭제하고 상태를 업데이트합니다.
+ */
 const Admin = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [newGame, setNewGame] = useState<Partial<Game>>({
