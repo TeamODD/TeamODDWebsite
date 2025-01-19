@@ -1,6 +1,6 @@
 import "../styles/Join.css";
 
-function Join() {
+const Join = () => {
   return (
     <div className="join-container">
       <div className="join-content">
@@ -40,6 +40,6 @@ function Join() {
       </div>
     </div>
   );
-}
+};
 
 export default Join;

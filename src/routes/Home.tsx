@@ -1,6 +1,6 @@
 import "../styles/Home.css";
 
-function Home() {
+const Home = () => {
   return (
     <div className="home-container">
       <img
@@ -18,6 +18,6 @@ function Home() {
       </span>
     </div>
   );
-}
+};
 
 export default Home;

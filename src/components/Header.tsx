@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import "../styles/Header.css";
 
-function Header() {
+const Header = () => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -46,6 +46,6 @@ function Header() {
       </header>
     </div>
   );
-}
+};
 
 export default Header;

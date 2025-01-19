@@ -1,34 +1,23 @@
 import "./styles/App.css";
 import Header from "./components/Header";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { lazy, memo, Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, memo } from "react";
 import Footer from "./components/Footer";
-import Loading from "./routes/Loading";
 
 const Home = lazy(() => import("./routes/Home"));
 const Projects = lazy(() => import("./routes/Projects"));
 const Join = lazy(() => import("./routes/Join"));
+const Contact = lazy(() => import("./routes/Contact"));
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <Suspense fallback={<Loading />}>
-        <AppContent />
-      </Suspense>
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }
 
 const AppContent = memo(() => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const queryPath = window.location.search.slice(1);
-    if (queryPath) {
-      navigate(queryPath);
-    }
-  }, [navigate]);
-
   return (
     <div className="App">
       <header>
@@ -39,6 +28,7 @@ const AppContent = memo(() => {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/join" element={<Join />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       <footer>

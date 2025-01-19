@@ -1,7 +1,7 @@
 import { FaInstagram, FaGithub, FaYoutube } from "react-icons/fa";
 import "../styles/Footer.css";
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="footer-container">
       <h3 className="footer-title">Team ODD</h3>
@@ -38,6 +38,6 @@ function Footer() {
       <p className="footer-copyright">© Team ODD All Rights Reserved.</p>
     </footer>
   );
-}
+};
 
 export default Footer;

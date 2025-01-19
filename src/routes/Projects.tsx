@@ -4,7 +4,7 @@ import { GamesData } from "../types/game";
 import GameCard from "../components/GameCard";
 import "../styles/Projects.css";
 
-function Projects() {
+const Projects: React.FC = () => {
   const typedGamesData: GamesData = gamesData;
   const [selectedYear, setSelectedYear] = useState<string>("all");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -105,6 +105,6 @@ function Projects() {
       </main>
     </div>
   );
-}
+};
 
 export default Projects;
