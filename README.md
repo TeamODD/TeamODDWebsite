@@ -2,7 +2,7 @@
 
 ## 게임 추가 방법
 
-1. https://team-odd.web.app/**admin**으로 접속
+1. https://teamodd.pages.dev/admin으로 접속
 2. 로그인 창이 나온다.
 3. 팀오드 구글 계정(이메일, 비번)을 치고 로그인
 4. 게임을 추가, 삭제 할 수 있는 관리자 페이지가 나온다.
