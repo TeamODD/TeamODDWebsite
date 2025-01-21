@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, memo, Suspense } from "react";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Loading from "./components/Loading";
 
 const Home = lazy(() => import("./routes/Home"));
 const Projects = lazy(() => import("./routes/Projects"));
@@ -15,7 +16,7 @@ const Login = lazy(() => import("./routes/Login"));
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <AppContent />
       </Suspense>
     </BrowserRouter>

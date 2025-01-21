@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { ref, push, remove, get } from "firebase/database";
+import { useState, useEffect, useCallback } from "react";
+import { ref, push, remove, get, child } from "firebase/database";
 import { database } from "../firebase";
 import { Game } from "../types/game";
 import "../styles/Admin.css";
@@ -50,37 +50,50 @@ const Admin = () => {
     placeholder: "",
   });
 
-  useEffect(() => {
-    fetchGames();
-  }, []);
+  // 데이터베이스 참조를 상수로 분리
+  const gamesRef = ref(database, "games");
 
-  const fetchGames = async () => {
+  // useCallback을 사용하여 함수 재생성 방지
+  const fetchGames = useCallback(async () => {
     try {
-      const gamesRef = ref(database, "games");
       const snapshot = await get(gamesRef);
       if (snapshot.exists()) {
-        const gamesData = Object.entries(snapshot.val()).map(([id, data]) => ({
+        const gamesData = Object.entries(snapshot.val()).map(([key, data]) => ({
           ...(data as Omit<Game, "id">),
-          id: parseInt(id),
+          id: parseInt(key),
         }));
         setGames(gamesData);
+      } else {
+        setGames([]);
       }
     } catch (error) {
       console.error("Error fetching games:", error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchGames();
+  }, [fetchGames]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const gamesRef = ref(database, "games");
       const newGameData = {
         ...newGame,
         id: Date.now(),
         placeholder: newGame.placeholder || "",
       };
 
-      await push(gamesRef, newGameData);
+      const newGameRef = await push(gamesRef, newGameData);
+      // 로컬 상태 업데이트
+      setGames((prevGames) => [
+        ...prevGames,
+        {
+          ...newGameData,
+          id: parseInt(newGameRef.key || Date.now().toString()),
+        } as Game,
+      ]);
+
       setNewGame({
         id: 0,
         title: "",
@@ -92,7 +105,7 @@ const Admin = () => {
         developer: "",
         placeholder: "",
       });
-      fetchGames();
+
       alert("게임이 성공적으로 추가되었습니다!");
     } catch (error) {
       console.error("Error adding game:", error);
@@ -103,9 +116,10 @@ const Admin = () => {
   const handleDelete = async (gameId: number) => {
     if (window.confirm("정말로 이 게임을 삭제하시겠습니까?")) {
       try {
-        const gameRef = ref(database, `games/${gameId}`);
+        const gameRef = child(gamesRef, gameId.toString());
         await remove(gameRef);
-        fetchGames();
+        // 로컬 상태 업데이트
+        setGames((prevGames) => prevGames.filter((game) => game.id !== gameId));
         alert("게임이 삭제되었습니다.");
       } catch (error) {
         console.error("Error deleting game:", error);

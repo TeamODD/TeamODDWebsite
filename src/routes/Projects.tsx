@@ -4,6 +4,7 @@ import { database } from "../firebase";
 import { GamesData } from "../types/game";
 import GameCard from "../components/GameCard";
 import "../styles/Projects.css";
+import Loading from "../components/Loading";
 
 /**
  * Projects 컴포넌트는 Firebase Realtime Database에서 게임 데이터를 가져와서
@@ -119,7 +120,7 @@ const Projects: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <Loading />;
   }
 
   return (
