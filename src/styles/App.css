@@ -41,4 +41,24 @@ body {
   min-height: 100vh;
   padding-top: 2rem;
   font-family: "Pretendard", sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 태블릿 환경 (768px 이하) */
+@media screen and (max-width: 768px) {
+  .App {
+    padding-top: 1.5rem;
+  }
+}
+
+/* 모바일 환경 (480px 이하) */
+@media screen and (max-width: 480px) {
+  .App {
+    padding-top: 1rem;
+  }
+
+  body {
+    font-size: 14px;
+  }
 }

@@ -44,7 +44,7 @@ const Admin = () => {
     description: "",
     year: new Date().getFullYear().toString(),
     project: "",
-    imageUrl: "",
+    imageUrl: "images/games/",
     link: "",
     developer: "",
     placeholder: "",

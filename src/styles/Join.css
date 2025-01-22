@@ -64,3 +64,60 @@
   line-height: 50px; /* 250% */
   list-style-position: inside;
 }
+
+/* 태블릿 */
+@media screen and (max-width: 768px) {
+  .join-content {
+    margin-top: 80px;
+  }
+
+  .join-title {
+    font-size: 28px;
+  }
+
+  .join-text {
+    font-size: 16px;
+  }
+
+  .join-button {
+    width: 140px;
+    height: 40px;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+
+  .join-rules {
+    font-size: 16px;
+    line-height: 40px;
+  }
+}
+
+/* 모바일 */
+@media screen and (max-width: 480px) {
+  .join-content {
+    margin-top: 60px;
+    padding: 0 15px;
+  }
+
+  .join-title {
+    font-size: 24px;
+  }
+
+  .join-text {
+    font-size: 14px;
+  }
+
+  .join-button {
+    width: 120px;
+    height: 35px;
+    font-size: 18px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+  }
+
+  .join-rules {
+    font-size: 14px;
+    line-height: 35px;
+  }
+}

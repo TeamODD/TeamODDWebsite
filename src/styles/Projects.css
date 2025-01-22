@@ -118,7 +118,60 @@
 
 @media screen and (max-width: 768px) {
   .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-type-title {
+    font-size: 1.3rem;
+    margin: 1.2rem 0;
+  }
+
+  .year-dropdown {
+    width: 100px;
+  }
+
+  .year-dropdown-button {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+}
+
+/* 모바일 */
+@media screen and (max-width: 480px) {
+  .games-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .projects-page {
+    padding: 10px;
+  }
+
+  .project-type-title {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  .year-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .year-dropdown-button {
+    font-size: 0.9rem;
+  }
+
+  .year-tab {
+    padding: 0.4rem 0.8rem;
+    font-size: 14px;
   }
 }
 

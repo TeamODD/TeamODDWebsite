@@ -1,14 +1,15 @@
+/* Header.css */
 .header {
   background-color: #1a1a1a;
   display: flex;
   justify-content: center;
-  height: 60px; /* Adjust the height as needed */
+  height: 60px;
 }
 
 .headerObj {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Align items vertically in the center */
+  align-items: center;
   padding: 0;
   width: 90%;
   text-align: center;
@@ -24,16 +25,12 @@ a {
 .logo {
   font-size: 30px;
   font-weight: 700;
-  line-height: 60px; /* Ensure the same line-height as the header height */
+  line-height: 60px;
   margin-bottom: 30px;
-  letter-spacing: normal; /* 추가: 자간 명시적 설정 */
-  white-space: nowrap; /* 추가: 텍스트 줄바꿈 방지 */
-  display: inline-block; /* 추가: 블록 레벨 지정 */
-}
-
-.logo a {
-  letter-spacing: normal; /* 추가: 링크에도 동일한 자간 적용 */
-  font-size: 30px; /* 추가: 폰트 크기 명시적 지정 */
+  letter-spacing: normal;
+  white-space: nowrap;
+  display: inline-block;
+  color: #fff;
 }
 
 .logo:hover {
@@ -43,23 +40,25 @@ a {
 .logo-image {
   width: 50px;
   height: 50px;
-  vertical-align: middle; /* Align the image vertically in the middle */
+  vertical-align: middle;
 }
 
 .nav-links {
   list-style-type: none;
-  display: flex; /* Use flexbox for alignment */
-  align-items: center; /* Align items vertically in the center */
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li {
-  margin-left: 4rem; /* Adjust the margin as needed */
-  margin-bottom: 10px;
+  margin-left: 4rem;
+  margin-bottom: 1.5rem;
   letter-spacing: normal;
 }
 
 .nav-links li a {
-  transition: text-shadow 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .nav-links li a:hover {
@@ -67,8 +66,6 @@ a {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* transition: text-shadow 0.2s ease;
-  text-shadow: 0px 0px 5px #fff, -2px 4px 20px #26bef0, 2px -4px 20px #f5ad63; */
 }
 
 .activeList {
@@ -78,5 +75,119 @@ a {
   letter-spacing: 0;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* text-shadow: 0px 0px 5px #fff, -2px 4px 25px #26bef0, 2px -4px 25px #f5ad63; */
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  z-index: 100;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* 햄버거 메뉴 활성화 시 애니메이션 */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* 태블릿 환경 (768px 이하) */
+@media screen and (max-width: 768px) {
+  .headerObj {
+    width: 95%;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .logo-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: #1a1a1a;
+    padding: 20px 0;
+    z-index: 99;
+  }
+
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+  }
+}
+
+/* 모바일 환경 (480px 이하) */
+@media screen and (max-width: 480px) {
+  .header {
+    height: 50px;
+  }
+
+  .headerObj {
+    width: 90%;
+  }
+
+  .logo {
+    visibility: hidden;
+    font-size: 20px;
+    line-height: 50px;
+    margin-bottom: 20px;
+  }
+
+  .logo-image {
+    visibility: visible;
+    width: 50px;
+    height: 50px;
+  }
+
+  .nav-links li {
+    margin-left: 0;
+    margin-bottom: 5px;
+  }
+
+  .nav-menu {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+
+  a {
+    font-size: 1rem;
+  }
 }
