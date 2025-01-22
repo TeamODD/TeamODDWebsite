@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0;
-  width: 90%;
+  width: 80%;
   text-align: center;
   margin: 0;
 }
@@ -26,7 +26,6 @@ a {
   font-size: 30px;
   font-weight: 700;
   line-height: 60px;
-  margin-bottom: 30px;
   letter-spacing: normal;
   white-space: nowrap;
   display: inline-block;
@@ -53,7 +52,6 @@ a {
 
 .nav-links li {
   margin-left: 4rem;
-  margin-bottom: 1.5rem;
   letter-spacing: normal;
 }
 
