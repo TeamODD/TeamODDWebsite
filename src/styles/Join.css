@@ -50,7 +50,7 @@
 .join-button:hover {
   color: linear-gradient(90deg, #f5ad63 0%, #26bef0 100%);
   transition: box-shadow 0.2s ease;
-  box-shadow: -7px 0px 20px #26bef0, 7px 0px 20px #f5ad63;
+  box-shadow: -5px 0px 15px #26bef0, 5px 0px 15px #f5ad63;
   /* -14px 0px 30px #26bef0, 14px 0px 30px #f5ad63*/
 }
 

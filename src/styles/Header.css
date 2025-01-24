@@ -57,15 +57,14 @@ a {
 }
 
 .nav-links li a {
-  color: #fff;
+  color: #b2b2b2;
+  transition: all 0.3s ease;
 }
 
 .nav-links li a:hover {
-  background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: #fff;
+  text-shadow: 0px 0px 30px #fff;
+  transition: all 0.3s ease;
 }
 
 .activeList {
@@ -75,6 +74,14 @@ a {
   letter-spacing: 0;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: -5px 0px 25px #26bef0, 5px 0px 25px #f5ad63;
+  transition: all 0.3s ease;
+}
+
+.activeList:hover {
+  text-shadow: -5px 0px 25px #26bef0, 5px 0px 25px #f5ad63;
+  transition: all 0.3s ease;
 }
 
 .hamburger {
