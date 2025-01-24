@@ -234,6 +234,7 @@ const Admin = () => {
         {games.map((game) => (
           <div key={game.id} className="game-item">
             <span>{game.title}</span>
+            <img src={game.imageUrl} alt={game.title} loading="lazy" />
             <button
               className="delete-button"
               onClick={() => handleDelete(game.id)}
