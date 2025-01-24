@@ -5,6 +5,10 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-use-select: text;
+  user-select: text;
 }
 
 .footer-title {
