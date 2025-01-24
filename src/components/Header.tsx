@@ -29,7 +29,7 @@ const Header = () => {
     <div className="header">
       <header className="headerObj">
         <h1 className="logo" onClick={() => (window.location.href = "/")}>
-          <img src="logo.svg" alt="" className="logo-image" />
+          <img src="logo.png" alt="" className="logo-image" />
           TEAMODD
         </h1>
         <div
