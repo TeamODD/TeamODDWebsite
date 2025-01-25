@@ -3,12 +3,7 @@ import "../styles/Home.css";
 const Home = () => {
   return (
     <div className="home-container">
-      <img
-        className="home-image"
-        src="images/home/home.webp"
-        loading="lazy"
-        alt="home"
-      />
+      <img className="home-image" src="images/home/home.webp" alt="home" />
       <span className="home-image-text-title">
         Team ODD
         <br />
