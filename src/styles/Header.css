@@ -75,7 +75,6 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  text-shadow: -5px 0px 25px #26bef0, 5px 0px 25px #f5ad63;
   transition: all 0.3s ease;
 }
 
