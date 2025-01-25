@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ref, push, remove, get, child } from "firebase/database";
+import { ref, set, remove, get } from "firebase/database";
 import { database } from "../firebase";
 import { Game } from "../types/game";
 import "../styles/Admin.css";
@@ -36,8 +36,13 @@ import "../styles/Admin.css";
  * @param {number} gameId - 삭제할 게임의 ID
  * @description 선택한 게임을 데이터베이스에서 삭제하고 상태를 업데이트합니다.
  */
+
+interface GameWithKey extends Game {
+  key: string;
+}
+
 const Admin = () => {
-  const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<GameWithKey[]>([]);
   const [newGame, setNewGame] = useState<Partial<Game>>({
     id: 0,
     title: "",
@@ -60,8 +65,8 @@ const Admin = () => {
       if (snapshot.exists()) {
         const gamesData = Object.entries(snapshot.val()).map(([key, data]) => ({
           ...(data as Omit<Game, "id">),
-          id: parseInt(key),
-        }));
+          key: key, // Firebase 키 저장
+        })) as GameWithKey[];
         setGames(gamesData);
       } else {
         setGames([]);
@@ -78,21 +83,16 @@ const Admin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const timestamp = Date.now();
       const newGameData = {
         ...newGame,
-        id: Date.now(),
+        id: timestamp,
         placeholder: newGame.placeholder || "",
       };
 
-      const newGameRef = await push(gamesRef, newGameData);
-      // 로컬 상태 업데이트
-      setGames((prevGames) => [
-        ...prevGames,
-        {
-          ...newGameData,
-          id: parseInt(newGameRef.key || Date.now().toString()),
-        } as Game,
-      ]);
+      // set을 사용하여 직접 데이터 저장
+      await set(ref(database, `games/${timestamp}`), newGameData);
+      setGames((prevGames) => [...prevGames, newGameData as GameWithKey]);
 
       setNewGame({
         id: 0,
@@ -113,13 +113,11 @@ const Admin = () => {
     }
   };
 
-  const handleDelete = async (gameId: number) => {
+  const handleDelete = async (key: string) => {
     if (window.confirm("정말로 이 게임을 삭제하시겠습니까?")) {
       try {
-        const gameRef = child(gamesRef, gameId.toString());
-        await remove(gameRef);
-        // 로컬 상태 업데이트
-        setGames((prevGames) => prevGames.filter((game) => game.id !== gameId));
+        await remove(ref(database, `games/${key}`));
+        setGames((prevGames) => prevGames.filter((game) => game.key !== key));
         alert("게임이 삭제되었습니다.");
       } catch (error) {
         console.error("Error deleting game:", error);
@@ -231,11 +229,11 @@ const Admin = () => {
       <div className="game-list">
         <h2>등록된 게임 목록</h2>
         {games.map((game) => (
-          <div key={game.id} className="game-item">
+          <div key={game.key} className="game-item">
             <span>{game.title}</span>
             <button
               className="delete-button"
-              onClick={() => handleDelete(game.id)}
+              onClick={() => handleDelete(game.key)}
             >
               삭제
             </button>
