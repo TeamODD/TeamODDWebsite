@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
+import Loading from "./Loading";
 
 /**
  * 인증된 사용자만 접근할 수 있는 보호된 라우트를 나타내는 컴포넌트입니다.
@@ -13,7 +14,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const [user, loading] = useAuthState(auth);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!user) {
