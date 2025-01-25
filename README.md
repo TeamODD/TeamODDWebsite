@@ -2,7 +2,7 @@
 
 ## 게임 추가 방법
 
-0. public/images/games/ 에 해당 게임 썸네일 이미지를 넣는다(jpg, png등 상관없으나 가급적 **webp**확장자로 해주시기 바랍니다.)
+0. public/images/games/ 에 해당 게임 썸네일 이미지를 넣는다(jpg, png등 상관없으나 가급적 **webp**확장자로 해주시기 바랍니다. webp 변환 사이트 https://squoosh.app/)
 1. https://teamodd.pages.dev/admin 으로 접속
 2. 로그인 창이 나온다.
 3. 팀오드 구글 계정(이메일, 비번)을 치고 로그인
