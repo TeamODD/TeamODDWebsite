@@ -213,14 +213,13 @@ const Admin = () => {
         </div>
 
         <div className="form-group">
-          <label>Placeholder:</label>
+          <label>Placeholder(선택):</label>
           <input
             type="text"
             value={newGame.placeholder}
             onChange={(e) =>
               setNewGame({ ...newGame, placeholder: e.target.value })
             }
-            required
           />
         </div>
 
