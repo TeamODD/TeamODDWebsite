@@ -44,6 +44,16 @@ body {
   overflow-x: hidden;
 }
 
+main {
+  padding-top: 60px; /* header의 height와 동일한 값 */
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    padding-top: 50px; /* 모바일에서 header height가 50px로 변경되므로 */
+  }
+}
+
 /* 태블릿 환경 (768px 이하) */
 @media screen and (max-width: 768px) {
   .App {
