@@ -1,6 +1,7 @@
 import { Game } from "../types/game";
 import BlurImage from "./BlurImage";
 import "../styles/GameCard.css";
+import { useNavigate } from "react-router-dom";
 
 interface GameCardProps {
   game: Game;
@@ -21,10 +22,17 @@ interface GameCardProps {
  * @returns {JSX.Element} 게임 정보를 표시하는 카드 UI
  */
 const GameCard = ({ game }: GameCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(`/project/${game.id}`);
+  };
+
   return (
-    <div className="game-card" onClick={() => window.open(game.link, "_blank")}>
+    <div className="game-card" onClick={handleClick}>
       <BlurImage
-        src={game.imageUrl}
+        src={`${import.meta.env.BASE_URL}${game.imageUrl}`}
         alt={game.title}
         className="game-image"
         placeholder={game.placeholder}

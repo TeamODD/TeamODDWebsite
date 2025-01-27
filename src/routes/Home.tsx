@@ -3,7 +3,11 @@ import "../styles/Home.css";
 const Home = () => {
   return (
     <div className="home-container">
-      <img className="home-image" src="images/home/home.webp" alt="home" />
+      <img
+        className="home-image"
+        src={`${import.meta.env.BASE_URL}images/home/home.webp`}
+        alt="home"
+      />
       <span className="home-image-text-title">
         Team ODD
         <br />

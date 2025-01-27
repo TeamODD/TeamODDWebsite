@@ -1,0 +1,109 @@
+.game-info-detail {
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  color: #ffffff;
+  padding: 2rem;
+}
+
+.game-info-detail-header {
+  max-width: 1024px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.game-info-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.game-info-meta {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.meta-label {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.meta-value {
+  color: #fff;
+}
+
+.download-link-button {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.download-link-button:hover {
+  color: linear-gradient(90deg, #f5ad63 0%, #26bef0 100%);
+  color: white;
+  transition: box-shadow 0.2s ease;
+  box-shadow: -5px 0px 15px #26bef0, 5px 0px 15px #f5ad63;
+}
+
+.game-info-image {
+  width: 100%;
+  height: 512px;
+  max-width: 1024px;
+  margin: 2rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.game-info-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-info-description {
+  max-width: 1024px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #888;
+}
+
+.back-to-list {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.back-to-list:hover {
+  background-color: #555;
+  color: white;
+}

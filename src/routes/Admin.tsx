@@ -47,6 +47,9 @@ const Admin = () => {
     id: 0,
     title: "",
     description: "",
+    detail: "",
+    platform: "",
+    engine: "",
     year: new Date().getFullYear().toString(),
     project: "",
     imageUrl: "images/games/",
@@ -98,6 +101,9 @@ const Admin = () => {
         id: 0,
         title: "",
         description: "",
+        detail: "",
+        platform: "",
+        engine: "",
         year: new Date().getFullYear().toString(),
         project: "",
         imageUrl: "",
@@ -150,6 +156,37 @@ const Admin = () => {
             onChange={(e) =>
               setNewGame({ ...newGame, description: e.target.value })
             }
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>상세 설명:</label>
+          <textarea
+            value={newGame.detail}
+            onChange={(e) => setNewGame({ ...newGame, detail: e.target.value })}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>플랫폼:</label>
+          <input
+            type="text"
+            value={newGame.platform}
+            onChange={(e) =>
+              setNewGame({ ...newGame, platform: e.target.value })
+            }
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>엔진:</label>
+          <input
+            type="text"
+            value={newGame.engine}
+            onChange={(e) => setNewGame({ ...newGame, engine: e.target.value })}
             required
           />
         </div>

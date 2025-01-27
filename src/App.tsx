@@ -5,6 +5,7 @@ import { lazy, memo, Suspense } from "react";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Loading from "./components/Loading";
+import ScrollToTop from "./components/ScrollToTop";
 
 const Home = lazy(() => import("./routes/Home"));
 const Projects = lazy(() => import("./routes/Projects"));
@@ -12,10 +13,12 @@ const Join = lazy(() => import("./routes/Join"));
 const Contact = lazy(() => import("./routes/Contact"));
 const Admin = lazy(() => import("./routes/Admin"));
 const Login = lazy(() => import("./routes/Login"));
+const GameInfo = lazy(() => import("./routes/GameInfo"));
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AppContent />
     </BrowserRouter>
   );
@@ -23,15 +26,14 @@ function App() {
 
 const AppContent = memo(() => {
   return (
-    <div className="App">
-      <header>
-        <Header />
-      </header>
+    <>
+      <Header />
       <main>
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/project/:id" element={<GameInfo />} />
             <Route path="/join" element={<Join />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
@@ -46,10 +48,8 @@ const AppContent = memo(() => {
           </Routes>
         </Suspense>
       </main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+      <Footer />
+    </>
   );
 });
 
