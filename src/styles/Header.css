@@ -95,7 +95,7 @@ a {
   width: 30px;
   height: 21px;
   cursor: pointer;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   z-index: 100;
 }
 
@@ -179,7 +179,7 @@ a {
     visibility: hidden;
     font-size: 20px;
     line-height: 50px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
 
   .logo-image {
