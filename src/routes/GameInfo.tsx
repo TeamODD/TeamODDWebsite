@@ -56,6 +56,7 @@ const GameInfo = () => {
         <button className="back-button" onClick={() => navigate(-1)}>
           ←
         </button>
+        <h3 className="game-info-project">{game.project}</h3>
         <h1 className="game-info-title">{game.title}</h1>
         <div className="game-info-meta">
           <div className="meta-item">
@@ -71,16 +72,12 @@ const GameInfo = () => {
             <span className="meta-value">{game.platform || "-"}</span>
           </div>
         </div>
-        {game.link && (
-          <a
-            href={game.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="download-link-button"
-          >
-            다운로드
-          </a>
-        )}
+        <button
+          className="download-link-button"
+          onClick={() => window.open(game.link, "_blank")}
+        >
+          다운로드↗
+        </button>
       </div>
 
       <div className="game-info-image">

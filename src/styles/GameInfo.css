@@ -21,6 +21,15 @@
   margin-bottom: 1rem;
 }
 
+.game-info-project {
+  color: #aaa;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+}
+
 .game-info-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -28,51 +37,61 @@
 }
 
 .game-info-meta {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 2rem;
-  margin-bottom: 1rem;
+  /* background-color: #000000; */
+  /* padding: 16px; */
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 32px 0;
 }
 
 .meta-item {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  height: 1.5rem;
+  gap: 1rem;
 }
 
 .meta-label {
-  color: #888;
-  font-size: 0.9rem;
+  width: 80px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  flex-shrink: 0;
 }
 
 .meta-value {
-  color: #fff;
+  flex: 1;
+  font-size: 1rem;
+  color: #ffffff;
 }
 
 .download-link-button {
-  display: inline-flex;
-  align-items: center;
-  background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
-  color: white;
-  padding: 0.5rem 1rem;
+  width: 160px;
+  height: 45px;
   border-radius: 20px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-top: 1rem;
+  border-style: none;
+  background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
+  color: #fff;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: box-shadow 0.2s ease;
 }
 
 .download-link-button:hover {
   color: linear-gradient(90deg, #f5ad63 0%, #26bef0 100%);
   color: white;
+  opacity: 0.9;
   transition: box-shadow 0.2s ease;
-  box-shadow: -5px 0px 15px #26bef0, 5px 0px 15px #f5ad63;
 }
 
 .game-info-image {
-  width: 100%;
+  width: 70%;
   height: 512px;
-  max-width: 1024px;
+  max-width: 800px;
   margin: 2rem auto;
   border-radius: 8px;
   overflow: hidden;
