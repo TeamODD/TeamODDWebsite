@@ -38,8 +38,8 @@ body {
 
 * {
   font-family: "Pretendard", sans-serif;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
   scrollbar-width: none;
 }
 

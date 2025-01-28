@@ -157,9 +157,9 @@
 
 /* 모바일 */
 @media screen and (max-width: 480px) {
-  .logo {
+  /* .logo {
     margin-bottom: 20px;
-  }
+  } */
 
   .games-grid {
     grid-template-columns: 1fr;
