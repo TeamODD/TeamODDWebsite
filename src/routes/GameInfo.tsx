@@ -54,7 +54,9 @@ const GameInfo = () => {
     <div className="game-info-detail">
       <div className="game-info-detail-header">
         <button className="back-button" onClick={() => navigate(-1)}>
-          ←
+          <div className="back-button-arrow-box">
+            <span className="back-button-arrow" />
+          </div>
         </button>
         <h3 className="game-info-project">{game.project}</h3>
         <h1 className="game-info-title">{game.title}</h1>
