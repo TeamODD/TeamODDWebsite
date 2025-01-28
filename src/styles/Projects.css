@@ -10,11 +10,13 @@
   display: flex;
   justify-content: center;
   margin: 20px 0;
+  overflow: visible !important;
 }
 
 .year-dropdown {
   position: relative;
   width: 120px;
+  overflow: visible !important;
 }
 
 .year-dropdown-button {
@@ -36,6 +38,7 @@
 
 .year-dropdown-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
 .year-dropdown-arrow {
@@ -80,6 +83,7 @@
 
 .year-dropdown-menu li {
   padding: 10px 15px;
+  border-radius: 8px;
   color: white;
   text-align: center;
   cursor: pointer;
@@ -89,6 +93,7 @@
 
 .year-dropdown-menu li:hover {
   background-color: #3c3c3c;
+  border-radius: 8px;
 }
 
 .project-type-section {
