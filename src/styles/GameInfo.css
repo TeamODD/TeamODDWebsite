@@ -127,6 +127,17 @@
   line-height: 1;
   color: #fff;
   word-wrap: break-word;
+  text-align: center;
+}
+
+.game-info-description span {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e6e6e6;
+}
+
+.game-info-description span strong {
+  color: #fff;
 }
 
 .back-to-list {

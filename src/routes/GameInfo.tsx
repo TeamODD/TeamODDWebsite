@@ -94,8 +94,18 @@ const GameInfo = () => {
       </div>
 
       <div className="game-info-description">
-        {game.detail.split("//n").map((paragraph, idx) => (
+        {/* {game.detail.split("/n").map((paragraph, idx) => (
           <p key={idx}>{paragraph}</p>
+        ))} */}
+        {game.detail.split("/n").map((paragraph, idx) => (
+          <span key={idx}>
+            {paragraph
+              .split(/\*(.*?)\*/)
+              .map((text, index) =>
+                index % 2 === 0 ? text : <strong key={index}>{text}</strong>
+              )}
+            <br />
+          </span>
         ))}
       </div>
 
