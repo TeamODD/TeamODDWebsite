@@ -7,7 +7,11 @@
   align-items: center;
   background-color: #000;
   overflow-x: hidden;
-  margin-bottom: 20px; /* 추가된 부분 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* margin-bottom: 20px; */
 }
 
 .home-image-text-title {
@@ -41,7 +45,7 @@
   object-fit: fill;
   object-position: center;
   position: absolute;
-  filter: brightness(0.6);
+  filter: brightness(0.7);
   z-index: 0; /* 변경된 부분 */
 }
 

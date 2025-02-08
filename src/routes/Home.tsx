@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import "../styles/Home.css";
 
 const Home = () => {
+  useEffect(() => {
+    document.oncontextmenu = function () {
+      return false;
+    };
+  }, []);
+
   return (
     <div className="home-container">
       {/* <img
