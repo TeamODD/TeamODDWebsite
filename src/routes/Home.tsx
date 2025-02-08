@@ -15,7 +15,13 @@ const Home = () => {
         src={`${import.meta.env.BASE_URL}images/home/home.png`}
         alt="home"
       /> */}
-      <video className="home-image" autoPlay={true} loop muted>
+      <video
+        className="home-image"
+        autoPlay={true}
+        loop
+        muted
+        disablePictureInPicture
+      >
         <source src={`${import.meta.env.BASE_URL}images/home/home.webm`} />
         <source src={`${import.meta.env.BASE_URL}images/home/home.mp4`} />
       </video>
