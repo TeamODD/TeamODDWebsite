@@ -34,14 +34,14 @@
 }
 
 .home-image {
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   padding: 0;
   margin: 0;
-  /* object-fit: cover; */
+  object-fit: fill;
   object-position: center;
   position: absolute;
-  filter: brightness(0.4) blur(3px);
+  filter: brightness(0.6);
   z-index: 0; /* 변경된 부분 */
 }
 

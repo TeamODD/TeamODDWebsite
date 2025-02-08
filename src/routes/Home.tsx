@@ -3,11 +3,15 @@ import "../styles/Home.css";
 const Home = () => {
   return (
     <div className="home-container">
-      <img
+      {/* <img
         className="home-image"
-        src={`${import.meta.env.BASE_URL}images/home/home.webp`}
+        src={`${import.meta.env.BASE_URL}images/home/home.png`}
         alt="home"
-      />
+      /> */}
+      <video className="home-image" autoPlay={true} loop muted>
+        <source src={`${import.meta.env.BASE_URL}images/home/home.webm`} />
+        <source src={`${import.meta.env.BASE_URL}images/home/home.mp4`} />
+      </video>
       <span className="home-image-text-title">
         Team ODD
         <br />
