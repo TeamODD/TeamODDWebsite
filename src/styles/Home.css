@@ -45,8 +45,18 @@
   object-fit: fill;
   object-position: center;
   position: absolute;
-  filter: brightness(0.75) contrast(1.1);
-  z-index: 0; /* 변경된 부분 */
+  filter: brightness(0.8) contrast(1.1);
+  animation: videoFadeIn 0.5s ease-in-out;
+  z-index: 0;
+}
+
+@keyframes videoFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {

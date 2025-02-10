@@ -1,23 +1,46 @@
+import { useEffect, useState } from "react";
+import { get, ref } from "firebase/database";
+import { database } from "../firebase";
 import "../styles/Join.css";
+import GradientButton from "../components/GradientButton";
 
 const Join = () => {
+  const [joinLink, setJoinLink] = useState<string>("");
+
+  useEffect(() => {
+    const joinLink = async () => {
+      try {
+        const linkRef = ref(database, "join");
+        const linkSnapshot = await get(linkRef);
+
+        if (linkSnapshot.exists()) {
+          setJoinLink(linkSnapshot.val());
+        }
+      } catch (error) {
+        console.error("모집 링크를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    joinLink();
+  }, []);
+
   return (
     <div className="join-container">
       <div className="join-content">
         <h2 className="join-title">모집 일정</h2>
         <p className="join-text">2025-1 모집을 기다려 주세요!</p>
-        <button
-          className="join-button"
-          onClick={() => {
-            if (import.meta.env.VITE_CLUB_JOIN_URL === "") {
-              alert("현재 모집기간이 아닙니다.");
-            } else {
-              window.open(import.meta.env.VITE_CLUB_JOIN_URL, "_blank");
-            }
-          }}
-        >
-          지원하기
-        </button>
+        <div className="join-button">
+          <GradientButton
+            innerText="지원하기"
+            onClick={() => {
+              if (joinLink === "") {
+                alert("현재 모집기간이 아닙니다.");
+              } else {
+                window.open(joinLink, "_blank");
+              }
+            }}
+          />
+        </div>
         <ul className="join-rules">
           <li>
             TeamODD는 원칙적으로 연 1회, 1학기 초(3월)에 부원을 모집하고

@@ -5,6 +5,7 @@ import { database } from "../firebase";
 import { Game } from "../types/game";
 import Loading from "../components/Loading";
 import "../styles/GameInfo.css";
+import GradientButton from "../components/GradientButton";
 
 const GameInfo = () => {
   const { id } = useParams();
@@ -74,12 +75,12 @@ const GameInfo = () => {
             <span className="meta-value">{game.platform || "-"}</span>
           </div>
         </div>
-        <button
-          className="download-link-button"
-          onClick={() => window.open(game.link, "_blank")}
-        >
-          다운로드↗
-        </button>
+        <div className="download-link-button">
+          <GradientButton
+            innerText="다운로드↗"
+            onClick={() => window.open(game.link, "_blank")}
+          />
+        </div>
       </div>
 
       <div className="game-info-image">

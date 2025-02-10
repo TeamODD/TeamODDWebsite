@@ -85,27 +85,6 @@
   color: #ffffff;
 }
 
-.download-link-button {
-  width: 160px;
-  height: 45px;
-  border-radius: 20px;
-  border-style: none;
-  background: linear-gradient(90deg, #26bef0 0%, #f5ad63 100%);
-  color: #fff;
-  font-size: 1.3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  transition: box-shadow 0.2s ease;
-}
-
-.download-link-button:hover {
-  color: linear-gradient(90deg, #f5ad63 0%, #26bef0 100%);
-  color: white;
-  opacity: 0.9;
-  transition: box-shadow 0.2s ease;
-}
-
 .game-info-image {
   width: 70%;
   height: 512px;
