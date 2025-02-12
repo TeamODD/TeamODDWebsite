@@ -8,7 +8,7 @@ const Footer = () => {
       <p className="footer-address">
         서울특별시 성북구 삼선교로16길 116 한성대학교 상상관 508호
       </p>
-      <p className="footer-email">teamoddtmu@gmail.com</p>
+      <p className="footer-email">teamoddhsu@gmail.com</p>
       <div className="footer-sociallink">
         <a
           className="social-icon"
