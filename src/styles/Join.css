@@ -44,6 +44,7 @@
   font-weight: 400;
   line-height: 50px; /* 250% */
   list-style-position: inside;
+  list-style: none;
 }
 
 /* 태블릿 */
@@ -95,10 +96,13 @@
     font-size: 18px;
     margin-top: 40px;
     margin-bottom: 80px;
+    margin-right: 30px;
   }
 
   .join-rules {
+    padding-left: 0px;
     font-size: 14px;
     line-height: 35px;
+    margin: 30px 30px;
   }
 }
