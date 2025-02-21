@@ -31,7 +31,7 @@ const GameInfo = () => {
             setGame(null);
           }
 
-          if (game?.link == "") {
+          if (game?.link === "") {
             setIsDownLoad(false);
           } else {
             setIsDownLoad(true);
@@ -82,12 +82,12 @@ const GameInfo = () => {
             <span className="meta-value">{game.platform || "-"}</span>
           </div>
         </div>
-        <div className="download-link-button">
-          {isDownload && <GradientButton
+        {isDownload && <div className="download-link-button">
+          <GradientButton
             innerText="다운로드↗"
             onClick={() => window.open(game.link, "_blank")}
-          />}
-        </div>
+          />
+        </div>}
       </div>
 
       <div className="game-info-image">
