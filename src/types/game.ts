@@ -9,7 +9,7 @@ export interface Game {
   year: string;
   project: string;
   imageUrl: string;
-  link: string;
+  link?: string;
   developer: string;
   placeholder?: string;
 }
