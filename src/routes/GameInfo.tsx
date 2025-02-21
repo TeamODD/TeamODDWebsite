@@ -11,6 +11,7 @@ const GameInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [game, setGame] = useState<Game | null>(null);
+  const [isDownload, setIsDownLoad] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,6 +29,12 @@ const GameInfo = () => {
             setGame(foundGame as Game);
           } else {
             setGame(null);
+          }
+
+          if (game?.link == "") {
+            setIsDownLoad(false);
+          } else {
+            setIsDownLoad(true);
           }
         }
       } catch (error) {
@@ -76,10 +83,10 @@ const GameInfo = () => {
           </div>
         </div>
         <div className="download-link-button">
-          <GradientButton
+          {isDownload && <GradientButton
             innerText="다운로드↗"
             onClick={() => window.open(game.link, "_blank")}
-          />
+          />}
         </div>
       </div>
 
