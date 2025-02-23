@@ -21,7 +21,6 @@ const GameInfo = () => {
         const snapshot = await get(gamesRef);
         if (snapshot.exists()) {
           const gamesData = snapshot.val();
-          // ID 타입을 일치시켜 비교
           const foundGame = Object.values(gamesData).find(
             (game: any) => game.id.toString() === id
           );
@@ -29,12 +28,6 @@ const GameInfo = () => {
             setGame(foundGame as Game);
           } else {
             setGame(null);
-          }
-
-          if (game?.link === "") {
-            setIsDownLoad(false);
-          } else {
-            setIsDownLoad(true);
           }
         }
       } catch (error) {
@@ -49,6 +42,12 @@ const GameInfo = () => {
       fetchGameDetail();
     }
   }, [id]);
+
+  useEffect(() => {
+    if (game) {
+      setIsDownLoad(game.link !== "");
+    }
+  }, [game]);
 
   if (loading) {
     return <Loading />;
@@ -82,12 +81,14 @@ const GameInfo = () => {
             <span className="meta-value">{game.platform || "-"}</span>
           </div>
         </div>
-        {isDownload && <div className="download-link-button">
-          <GradientButton
-            innerText="다운로드↗"
-            onClick={() => window.open(game.link, "_blank")}
-          />
-        </div>}
+        {isDownload && (
+          <div className="download-link-button">
+            <GradientButton
+              innerText="다운로드↗"
+              onClick={() => window.open(game.link, "_blank")}
+            />
+          </div>
+        )}
       </div>
 
       <div className="game-info-image">

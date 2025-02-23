@@ -83,14 +83,22 @@ const Projects: React.FC = () => {
     [gamesData.games]
   );
 
-  // 선택된 연도에 따라 게임을 필터링
-  const filteredGames = useMemo(
-    () =>
+  // 선택된 연도에 따라 게임을 필터링하고 정렬
+  const filteredGames = useMemo(() => {
+    const filtered =
       selectedYear === "all"
-        ? gamesData.games
-        : gamesData.games.filter((game) => game.year === selectedYear),
-    [selectedYear, gamesData.games]
-  );
+        ? [...gamesData.games] // 모든 연도: 기존 순서 유지 (추가된 순)
+        : [...gamesData.games]
+            .filter((game) => game.year === selectedYear)
+            .sort((a, b) => {
+              // priority 값이 없는 경우 0으로 처리
+              const priorityA = a.priority || 0;
+              const priorityB = b.priority || 0;
+              return priorityB - priorityA; // priority 높은 순으로 정렬
+            });
+
+    return filtered;
+  }, [selectedYear, gamesData.games]);
 
   // 특정 연도가 선택된 경우 프로젝트 유형별로 게임을 그룹화
   const groupedGames = useMemo(

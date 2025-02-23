@@ -12,6 +12,7 @@ export interface Game {
   link?: string;
   developer: string;
   placeholder?: string;
+  priority?: number;
 }
 
 export interface GamesData {

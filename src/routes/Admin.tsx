@@ -56,6 +56,7 @@ const Admin = () => {
     link: "",
     developer: "",
     placeholder: "",
+    priority: 0,
   });
 
   // 데이터베이스 참조를 상수로 분리
@@ -110,6 +111,7 @@ const Admin = () => {
         link: "",
         developer: "",
         placeholder: "",
+        priority: 0,
       });
 
       alert("게임이 성공적으로 추가되었습니다!");
