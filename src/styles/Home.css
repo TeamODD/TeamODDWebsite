@@ -42,10 +42,10 @@
   height: 100vh;
   padding: 0;
   margin: 0;
-  object-fit: fill;
+  object-fit: cover;
   object-position: center;
   position: absolute;
-  filter: brightness(0.8) contrast(1.1);
+  filter: brightness(0.8) contrast(1.05);
   animation: videoFadeIn 0.5s ease-in-out;
   z-index: 0;
 }
