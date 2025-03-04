@@ -9,7 +9,7 @@ const Contact = () => {
         <div className="contact-section">
           <h2 className="contact-heading">주소</h2>
           <p className="contact-text">
-            서울특별시 성북구 삼선교로 16길 116
+            서울특별시 성북구 삼선교로 16길 116 한성대학교
             <br />
             한성대학교 인성관 508호
           </p>
