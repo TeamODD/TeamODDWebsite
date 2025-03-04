@@ -28,7 +28,7 @@ const Join = () => {
     <div className="join-container">
       <div className="join-content">
         <h2 className="join-title">모집 일정</h2>
-        <p className="join-text">2025-1 모집을 기다려 주세요!</p>
+        <p className="join-text">2025-1 신입 부원 모집 중입니다!</p>
         <div className="join-button">
           <GradientButton
             innerText="지원하기"
@@ -56,8 +56,7 @@ const Join = () => {
             부원을 환영합니다.
           </li>
           <li>
-            연 2회 진행되는 정규 프로젝트에 적어도 1회는 반드시 참여하셔야
-            합니다.(졸업학년, 군휴학 등의 경우 예외)
+            학기마다 활동 조건 달성 시 비교과 포인트를 얻으실 수 있습니다.
           </li>
         </ul>
       </div>
