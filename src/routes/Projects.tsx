@@ -87,14 +87,17 @@ const Projects: React.FC = () => {
   const filteredGames = useMemo(() => {
     const filtered =
       selectedYear === "all"
-        ? [...gamesData.games] // 모든 연도: 기존 순서 유지 (추가된 순)
+        ? [...gamesData.games].sort((a, b) => {
+            const timestampA = a.id || 0;
+            const timestampB = b.id || 0;
+            return timestampB - timestampA; // 최근 추가된 순으로 정렬
+          })
         : [...gamesData.games]
             .filter((game) => game.year === selectedYear)
             .sort((a, b) => {
-              // priority 값이 없는 경우 0으로 처리
               const priorityA = a.priority || 0;
               const priorityB = b.priority || 0;
-              return priorityB - priorityA; // priority 높은 순으로 정렬
+              return priorityB - priorityA;
             });
 
     return filtered;
