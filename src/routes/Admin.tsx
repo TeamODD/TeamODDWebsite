@@ -233,7 +233,6 @@ const Admin = () => {
             type="url"
             value={newGame.link}
             onChange={(e) => setNewGame({ ...newGame, link: e.target.value })}
-            required
           />
         </div>
 
