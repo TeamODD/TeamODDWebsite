@@ -38,9 +38,16 @@ const GameCard = ({ game }: GameCardProps) => {
         placeholder={game.placeholder}
       />
       <div className="game-info">
-        <h2 data-full-title={game.title}>{game.title}</h2>
+        <h2
+          data-full-title={game.title}
+          style={{
+            fontSize: game.title.length > 20 ? "1.3rem" : "1.5rem",
+          }}
+        >
+          {game.title}
+        </h2>
         <p className="game-description">
-          {game.description.split("//n").map((it, idx) => (
+          {game.description.split("/n").map((it, idx) => (
             <span key={idx}>
               {it}
               <br />
