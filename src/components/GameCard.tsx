@@ -46,7 +46,9 @@ const GameCard = ({ game }: GameCardProps) => {
         >
           {game.title}
         </h2>
-        <p className="game-description">
+        <p className="game-description" style={{
+          fontSize: game.description.length > 25 ? "0.9rem" : "1rem",
+        }}>
           {game.description.split("/n").map((it, idx) => (
             <span key={idx}>
               {it}
