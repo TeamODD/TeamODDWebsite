@@ -42,7 +42,7 @@ const Contact = () => {
             rel="noopener noreferrer"
             className="contact-link"
           >
-            @teamodd_hansunguniv
+            @teamodd_official
           </a>
         </div>
       </div>
