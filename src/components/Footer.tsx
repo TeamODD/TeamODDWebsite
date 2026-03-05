@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="footer-sociallink">
         <a
           className="social-icon"
-          href="https://www.instagram.com/teamodd_hansunguniv/"
+          href="https://www.instagram.com/teamodd_official/"
           target="_blank"
           rel="noopener noreferrer"
         >
