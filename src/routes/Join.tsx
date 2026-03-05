@@ -28,7 +28,7 @@ const Join = () => {
     <div className="join-container">
       <div className="join-content">
         <h2 className="join-title">모집 일정</h2>
-        <p className="join-text">25-2 모집완료! 26-1 모집을 기다려주세요!</p>
+        <p className="join-text">26-1 신입 부원 모집 중입니다!</p>
         <div className="join-button">
           <GradientButton
             innerText="지원하기"

@@ -41,13 +41,13 @@ const GameCard = ({ game }: GameCardProps) => {
         <h2
           data-full-title={game.title}
           style={{
-            fontSize: game.title.length > 20 ? "1.3rem" : "1.5rem",
+            fontSize: game.title.length > 20 ? "1.25rem" : "1.5rem",
           }}
         >
           {game.title}
         </h2>
         <p className="game-description" style={{
-          fontSize: game.description.length > 25 ? "0.9rem" : "1rem",
+          fontSize: game.description.length > 25 ? "0.85rem" : "1rem",
         }}>
           {game.description.split("/n").map((it, idx) => (
             <span key={idx}>
@@ -56,7 +56,7 @@ const GameCard = ({ game }: GameCardProps) => {
             </span>
           ))}
         </p>
-        <div className="game-details">
+        <div className="game-details" style={{ fontSize: game.developer.length > 25 ? "0.75rem" : "0.9rem" }}>
           <span>{game.developer}</span>
         </div>
       </div>
