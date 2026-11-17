@@ -1,88 +1,146 @@
-import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState, type FormEvent } from "react";
+import { FirebaseError } from "firebase/app";
+import { browserLocalPersistence, browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
+import { FiArrowLeft, FiArrowRight, FiEye, FiEyeOff } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { isVerifiedAccount } from "../auth/isVerifiedAccount";
 import "../styles/Login.css";
 
-/**
- * 관리자 로그인을 위한 컴포넌트입니다.
- *
- * @component
- * @example
- * <Login />
- *
- * @returns {JSX.Element} 로그인 페이지 컴포넌트
- *
- * @description
- * 이메일과 비밀번호를 입력받아 Firebase 인증을 통해 로그인을 시도합니다.
- * 로그인 성공 시 관리자 페이지로 이동하며, 실패 시 오류 메시지를 표시합니다.
- *
- * @function
- * @name Login
- *
- * @property {string} email - 사용자가 입력한 이메일
- * @property {string} password - 사용자가 입력한 비밀번호
- * @property {string} error - 로그인 실패 시 표시할 오류 메시지
- *
- * @hook
- * @name useState
- * @description 이메일, 비밀번호, 오류 메시지를 상태로 관리합니다.
- *
- * @hook
- * @name useNavigate
- * @description 로그인 성공 시 관리자 페이지로 이동하기 위해 사용합니다.
- *
- * @async
- * @function
- * @name handleSubmit
- * @param {React.FormEvent} e - 폼 제출 이벤트
- * @description 폼 제출 시 Firebase 인증을 통해 로그인을 시도합니다.
- *
- * @returns {Promise<void>}
- */
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [autoLogin, setAutoLogin] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    setError("");
+    setIsSubmitting(true);
+
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/admin");
-    } catch (error) {
-      setError("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.");
+      await setPersistence(auth, autoLogin ? browserLocalPersistence : browserSessionPersistence);
+      const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
+      navigate(isVerifiedAccount(credential.user) ? "/home-preview" : "/verify-email", { replace: true });
+    } catch (caughtError) {
+      if (caughtError instanceof FirebaseError && caughtError.code === "auth/too-many-requests") {
+        setError("로그인 시도가 많습니다. 잠시 후 다시 시도해 주세요.");
+      } else if (caughtError instanceof FirebaseError && caughtError.code === "auth/network-request-failed") {
+        setError("네트워크 연결을 확인한 뒤 다시 시도해 주세요.");
+      } else {
+        setError("로그인 실패 · 입력 정보를 확인해 주세요.");
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="login-page">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h2>관리자 로그인</h2>
-        {error && <div className="error-message">{error}</div>}
-        <div className="form-group-login">
-          <label>이메일</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group-login">
-          <label>비밀번호</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="login-button">
-          로그인
-        </button>
-      </form>
+      <div className="login-page__background" aria-hidden="true">
+        <video autoPlay loop muted playsInline preload="metadata" disablePictureInPicture>
+          <source src={`${import.meta.env.BASE_URL}images/home/home.webm`} type="video/webm" />
+          <source src={`${import.meta.env.BASE_URL}images/home/home.mp4`} type="video/mp4" />
+        </video>
+      </div>
+      <div className="login-shell">
+        <section className="login-intro" aria-label="Team ODD 소개">
+          <div className="login-intro__content">
+            <div className="login-intro__brand" aria-label="Team ODD">
+              <img
+                className="login-intro__logo"
+                src={`${import.meta.env.BASE_URL}images/top-bar/top-bar-logo-teamodd-001.webp`}
+                alt=""
+              />
+              <span>TEAM ODD</span>
+            </div>
+            <div className="login-intro__bottom">
+              <span className="login-intro__eyebrow">TEAM ODD</span>
+              <h1>열정이 있다면<br />누구나 함께.</h1>
+              <p>한성대학교 중앙게임개발동아리 Team ODD</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="login-panel" aria-labelledby="login-title">
+          <Link className="login-panel__back" to="/home-preview">
+            <FiArrowLeft aria-hidden="true" /> 홈으로 돌아가기
+          </Link>
+          <div className="login-panel__content">
+            <div className="login-panel__heading">
+              <h2 id="login-title">로그인</h2>
+              <p>로그인하고 Team ODD의 다양한 활동에 참여해 보세요.</p>
+            </div>
+
+            <form className="login-form" onSubmit={handleSubmit}>
+              <div className="login-field">
+                <label className="login-field__sr-only" htmlFor="login-email">이메일</label>
+                <input
+                  id="login-email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="이메일을 입력하세요"
+                  value={email}
+                  onChange={(event) => { setEmail(event.target.value); setError(""); }}
+                  required
+                />
+              </div>
+
+              <div className="login-field">
+                <label className="login-field__sr-only" htmlFor="login-password">비밀번호</label>
+                <div className="login-field__password">
+                  <input
+                    id="login-password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    autoComplete="current-password"
+                    placeholder="비밀번호를 입력하세요"
+                    value={password}
+                    onChange={(event) => { setPassword(event.target.value); setError(""); }}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((visible) => !visible)}
+                    aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
+                    aria-pressed={showPassword}
+                  >
+                    {showPassword ? <FiEyeOff aria-hidden="true" /> : <FiEye aria-hidden="true" />}
+                  </button>
+                </div>
+              </div>
+
+              <label className="login-form__auto-login">
+                <input
+                  type="checkbox"
+                  checked={autoLogin}
+                  onChange={(event) => setAutoLogin(event.target.checked)}
+                />
+                <span>자동 로그인</span>
+              </label>
+
+              {error && <p className="login-form__error" role="alert">{error}</p>}
+
+              <div className="login-form__divider" aria-hidden="true" />
+              <button className={`login-form__submit${error ? " login-form__submit--error" : ""}`} type="submit" disabled={isSubmitting}>
+                <span>{isSubmitting ? "로그인 중..." : error || "로그인"}</span>
+                <FiArrowRight aria-hidden="true" />
+              </button>
+            </form>
+
+            <div className="login-panel__signup">
+              <span>아직 계정이 없으신가요?</span>
+              <Link to="/signup">계정 생성</Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

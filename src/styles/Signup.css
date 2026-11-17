@@ -1,0 +1,177 @@
+.signup-shell {
+  min-height: 520px;
+  grid-template-columns: 1fr;
+}
+
+.signup-panel__content {
+  width: min(100% - 96px, 760px);
+  padding: 70px 0 30px;
+}
+
+.signup-panel__content--choice {
+  width: calc(100% - 80px);
+  max-width: none;
+  padding: 78px 0 36px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.signup-panel__content--choice .signup-panel__heading {
+  margin: 0 0 24px;
+}
+
+.signup-panel__heading {
+  margin: 0 0 16px;
+}
+
+.signup-choice {
+  display: flex;
+  flex: 1;
+  gap: 16px;
+}
+
+.signup-choice__card {
+  flex: 1;
+  width: 100%;
+  min-height: 180px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #4a4a4a;
+  border-radius: 6px;
+  background: #171717;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.signup-choice__card:hover {
+  border-color: #aaa;
+  background: #292929;
+}
+
+.signup-choice__card:focus-visible,
+.signup-choice__back:focus-visible {
+  outline: 2px solid #f5ad63;
+  outline-offset: 3px;
+}
+
+.signup-choice__icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+}
+
+.signup-choice__text {
+  min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.signup-choice__text strong {
+  font-size: 19px;
+}
+
+.signup-choice__text small {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.signup-choice__arrow {
+  flex: 0 0 auto;
+  color: #aaa;
+}
+
+.signup-choice__back {
+  margin: 0 0 12px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: #aaa;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.signup-choice__back:hover {
+  color: #fff;
+}
+
+.signup-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.signup-form__full,
+.signup-form .login-form__divider,
+.signup-form .login-form__submit {
+  grid-column: 1 / -1;
+}
+
+.signup-form .login-form__divider {
+  margin-top: 6px;
+}
+
+.signup-panel__content .login-panel__signup {
+  margin-top: 16px;
+}
+
+.signup-panel__content .login-panel__signup a {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.signup-panel__content .login-panel__signup a:hover {
+  color: #d0d0d0;
+}
+
+.signup-panel__content .login-panel__signup a:focus-visible {
+  outline: 2px solid #f5ad63;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .signup-shell {
+    min-height: 0;
+  }
+
+  .signup-panel__content {
+    width: min(100% - 48px, 360px);
+    padding: 70px 0 36px;
+  }
+
+  .signup-panel__content--choice {
+    min-height: 520px;
+  }
+
+  .signup-panel__heading {
+    margin: 0 0 20px;
+  }
+
+  .signup-choice {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .signup-choice__card {
+    min-height: 120px;
+    padding: 18px;
+  }
+
+  .signup-form {
+    grid-template-columns: 1fr;
+  }
+}

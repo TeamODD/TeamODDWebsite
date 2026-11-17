@@ -1,67 +1,16 @@
 import { useEffect, useState } from "react";
-import { get, ref } from "firebase/database";
+import { onValue, ref } from "firebase/database";
+import { Link } from "react-router-dom";
 import { database } from "../firebase";
-import "../styles/Join.css";
-import GradientButton from "../components/GradientButton";
+import { useMemberRole } from "../auth/useMemberRole";
+import "../styles/ModernPages.css";
 
-const Join = () => {
-  const [joinLink, setJoinLink] = useState<string>("");
-
-  useEffect(() => {
-    const joinLink = async () => {
-      try {
-        const linkRef = ref(database, "join");
-        const linkSnapshot = await get(linkRef);
-
-        if (linkSnapshot.exists()) {
-          setJoinLink(linkSnapshot.val());
-        }
-      } catch (error) {
-        console.error("모집 링크를 가져오는 중 오류 발생:", error);
-      }
-    };
-
-    joinLink();
-  }, []);
-
-  return (
-    <div className="join-container">
-      <div className="join-content">
-        <h2 className="join-title">모집 일정</h2>
-        <p className="join-text">26-1 신입부원모집이 전부 마무리 됐습니다! 지원해주신 여러분들 수고하셨습니다!</p>
-        <div className="join-button">
-          <GradientButton
-            innerText="지원하기"
-            onClick={() => {
-              if (joinLink === "") {
-                alert("현재 모집기간이 아닙니다.");
-              } else {
-                window.open(joinLink, "_blank");
-              }
-            }}
-          />
-        </div>
-        <ul className="join-rules">
-          <li>
-            TeamODD는 원칙적으로 연 1회, 1학기 초(3월)에 부원을 모집하고
-            있습니다. 다만 특정 파트 인원이 부족할 시 추가 모집이 이루어질 수
-            있습니다.
-          </li>
-          <li>
-            에브리타임과 TeamODD의 인스타그램에서 신입부원 모집 소식을 확인하실
-            수 있습니다.
-          </li>
-          <li>
-            TeamODD는 게임 개발 동아리로, 게임 개발에 관심과 열의를 가지고 있는
-            부원을 환영합니다.
-          </li>
-          <li>
-            학기마다 활동 조건 달성 시 비교과 포인트를 얻으실 수 있습니다.
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-export default Join;
+export default function Join(){
+  const [joinLink,setJoinLink] = useState("");
+  const {role} = useMemberRole();
+  useEffect(()=>{
+    if(role==="guest") {setJoinLink("");return;}
+    return onValue(ref(database,"join"),s=>setJoinLink(typeof s.val()==="string"?s.val():""));
+  },[role]);
+  return <div className="modern-page"><header className="modern-page__hero"><span>JOIN TEAM ODD</span><h1>가입안내</h1><p>게임 개발에 관심과 열의가 있는 분을 기다립니다.</p></header><div className="modern-card-grid"><section className="modern-panel"><h2>모집 안내</h2><p>Team ODD는 주로 1학기 초에 신입 부원을 모집하며, 상황에 따라 추가 모집할 수 있습니다. 모집 소식은 공식 채널에서 확인해 주세요.</p>{role==="guest" ? <p className="modern-note">신청 폼은 이메일 인증을 마친 계정에 공개됩니다. <Link to="/login">로그인하기 →</Link></p> : joinLink ? <a className="modern-action" href={joinLink} target="_blank" rel="noopener noreferrer">부원 신청 폼 열기 ↗</a> : <p className="modern-note">현재 등록된 신청 링크가 없습니다.</p>}</section><section className="modern-panel"><h2>활동 안내</h2><p>기획, 아트, 프로그래밍 등 각자의 역할로 프로젝트를 함께 만듭니다. 부원 계정은 가입 후 운영진의 승인을 받아야 활성화됩니다.</p><Link className="modern-action" to="/operations">운영안내 보기 →</Link></section></div></div>;
+}

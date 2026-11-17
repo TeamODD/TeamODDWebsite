@@ -1,0 +1,57 @@
+.profile-page {
+  min-height: calc(100vh - 128px);
+  padding: 56px 24px 96px;
+  box-sizing: border-box;
+  background: radial-gradient(circle at 15% 0%, #2a2a2a 0, #1b1b1b 38%, #111 100%);
+  color: #fff;
+}
+
+.profile-page__container { width: min(100%, 1000px); margin: 0 auto; }
+.profile-page__back { display: inline-flex; align-items: center; gap: 8px; color: #bbb; font-size: 13px; }
+.profile-page__back:hover { color: #fff; }
+.profile-page__heading { margin: 46px 0 30px; }
+.profile-page__heading > span { color: #a6a6a6; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; }
+.profile-page__heading h1 { margin: 10px 0; font-size: clamp(30px, 4vw, 42px); }
+.profile-page__heading p { margin: 0; color: #bcbcbc; font-size: 14px; }
+.profile-page__layout { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 20px; align-items: start; }
+.profile-page__summary, .profile-page__editor { border: 1px solid #424242; border-radius: 12px; background: #202020; }
+.profile-page__summary { display: flex; flex-direction: column; align-items: center; padding: 32px 24px 24px; }
+.profile-page__avatar { display: grid; place-items: center; width: 84px; height: 84px; overflow: hidden; border: 1px solid #777; border-radius: 50%; background: #343434; font-size: 38px; }
+.profile-page__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile-page__name { max-width: 100%; margin-top: 17px; overflow-wrap: anywhere; text-align: center; font-size: 18px; }
+.profile-page__part { margin-top: 5px; color: #aaa; font-size: 13px; }
+.profile-page__stats { display: flex; justify-content: space-between; width: 100%; margin-top: 28px; padding-top: 18px; border-top: 1px solid #414141; font-size: 13px; }
+.profile-page__stats > span { color: #aaa; }
+.profile-page__score--zero { color: #ff6b6b; }
+.profile-page__score--neutral { color: #fff; }
+.profile-page__score--gold { color: #e8bc5b; text-shadow: 0 0 8px #c8913c88; }
+.profile-page__editor { padding: 30px 34px 34px; }
+.profile-page__editor h2 { margin: 0 0 25px; font-size: 21px; }
+.profile-page__editor form { display: flex; flex-direction: column; }
+.profile-page__editor label { margin: 0 0 9px; font-size: 13px; font-weight: 600; }
+.profile-page__editor input { height: 46px; padding: 0 14px; box-sizing: border-box; border: 1px solid #555; border-radius: 6px; outline: 0; background: #171717; color: #fff; font-size: 14px; }
+.profile-page__editor input:focus { border-color: #ddd; }
+.profile-page__editor input[readonly] { color: #aaa; background: #252525; }
+.profile-page__hint { margin: 7px 0 22px; color: #999; font-size: 12px; }
+.profile-page__message { margin: 0 0 15px; color: #a7e7ba; font-size: 13px; }
+.profile-page__message--error { color: #ff9c9c; }
+.profile-page__save { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 18px; border: 0; border-radius: 6px; background: #fff; color: #111; font-size: 13px; font-weight: 700; cursor: pointer; }
+.profile-page__save:hover { background: #dedede; }
+.profile-page__save:disabled { opacity: 0.6; cursor: default; }
+.profile-page__loading { color: #aaa; font-size: 14px; }
+.profile-page__events{margin-top:24px}
+.profile-page__event-group{margin-top:20px}
+.profile-page__event-group h3{display:flex;align-items:center;gap:9px;margin:0 0 8px;font-size:16px}
+.profile-page__event-group h3 small{color:#e8bc5b;font-size:11px;font-weight:400}
+.profile-page__events ul{list-style:none;margin:0;padding:0}
+.profile-page__events li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-top:1px solid #424242}
+.profile-page__events li span{display:grid;gap:4px}
+.profile-page__events li small{color:#aaa;font-size:12px}
+.profile-page__events li strong{white-space:nowrap;color:#e8bc5b}
+
+@media (max-width: 700px) {
+  .profile-page { padding: 32px 16px 70px; }
+  .profile-page__heading { margin: 32px 0 24px; }
+  .profile-page__layout { grid-template-columns: 1fr; }
+  .profile-page__editor { padding: 24px 20px; }
+}

@@ -1,5 +1,5 @@
 .game-info-detail {
-  background-color: #1a1a1a;
+  background-color: #050505;
   min-height: 100vh;
   color: #ffffff;
   padding: 2rem;
@@ -57,7 +57,8 @@
 .game-info-meta {
   /* background-color: #000000; */
   /* padding: 16px; */
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -86,9 +87,10 @@
 }
 
 .game-info-image {
-  width: 70%;
-  height: 512px;
-  max-width: 800px;
+  width: min(100%, 1024px);
+  height: auto;
+  aspect-ratio: 16/9;
+  max-width: 1024px;
   margin: 2rem auto;
   border-radius: 8px;
   overflow: hidden;
@@ -106,7 +108,11 @@
   line-height: 1;
   color: #fff;
   word-wrap: break-word;
-  text-align: center;
+  text-align: left;
+  padding: 26px;
+  background: #1c1d1d;
+  border: 1px solid #3d3d3d;
+  border-radius: 9px;
 }
 
 .game-info-description span {

@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { ref, get } from "firebase/database";
 import { database } from "../firebase";
 import { GamesData } from "../types/game";
 import GameCard from "../components/GameCard";
 import "../styles/Projects.css";
 import Loading from "../components/Loading";
+import "../styles/ModernPages.css";
+import { useSiteLanguage, tr } from "../i18n/siteLanguage";
 
 /**
  * Projects 컴포넌트는 Firebase Realtime Database에서 게임 데이터를 가져와서
@@ -44,6 +47,9 @@ import Loading from "../components/Loading";
  */
 
 const Projects: React.FC = () => {
+  const language = useSiteLanguage();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q")?.trim().toLocaleLowerCase() ?? "";
   // 게임 데이터를 저장할 상태
   const [gamesData, setGamesData] = useState<GamesData>({ games: [] });
   // 필터링을 위한 선택된 연도를 저장할 상태
@@ -85,14 +91,21 @@ const Projects: React.FC = () => {
 
   // 선택된 연도에 따라 게임을 필터링하고 정렬
   const filteredGames = useMemo(() => {
+    const matchingGames = searchQuery
+      ? gamesData.games.filter((game) =>
+          [game.title, game.description, game.developer, game.project].some(
+            (value) => value.toLocaleLowerCase().includes(searchQuery)
+          )
+        )
+      : gamesData.games;
     const filtered =
       selectedYear === "all"
-        ? [...gamesData.games].sort((a, b) => {
+        ? [...matchingGames].sort((a, b) => {
             const timestampA = a.id || 0;
             const timestampB = b.id || 0;
             return timestampB - timestampA; // 최근 추가된 순으로 정렬
           })
-        : [...gamesData.games]
+        : [...matchingGames]
             .filter((game) => game.year === selectedYear)
             .sort((a, b) => {
               const priorityA = a.priority || 0;
@@ -101,7 +114,7 @@ const Projects: React.FC = () => {
             });
 
     return filtered;
-  }, [selectedYear, gamesData.games]);
+  }, [selectedYear, gamesData.games, searchQuery]);
 
   // 특정 연도가 선택된 경우 프로젝트 유형별로 게임을 그룹화
   const groupedGames = useMemo(
@@ -136,6 +149,7 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects-page">
+      <header className="modern-page__hero"><span>TEAM ODD PROJECTS</span><h1>{tr(language,"프로젝트","Projects")}</h1><p>{tr(language,"Team ODD에서 만든 게임과 프로젝트를 둘러보세요.","Explore games and projects created by Team ODD.")}</p></header>
       <div className="year-filter">
         <div
           ref={dropdownRef}
@@ -167,7 +181,9 @@ const Projects: React.FC = () => {
       </div>
 
       <main className="games-container">
-        {selectedYear === "all" ? (
+        {searchQuery && filteredGames.length === 0 ? (
+          <p className="projects-empty">검색 결과가 없습니다.</p>
+        ) : selectedYear === "all" ? (
           <div className="games-grid">
             {filteredGames.map((game) => (
               <GameCard key={game.id} game={game} />

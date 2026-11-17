@@ -13,6 +13,7 @@ export interface Game {
   developer: string;
   placeholder?: string;
   priority?: number;
+  reviewPolicy?: "everyone" | "account" | "member" | "off";
 }
 
 export interface GamesData {

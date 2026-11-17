@@ -1,0 +1,42 @@
+.admin-events__heading{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:20px}
+.admin-events__heading h2{margin:0 0 7px}
+.admin-events__heading p{margin:0;font-size:13px}
+.admin-events__heading>span{color:#aaa;font-size:14px;white-space:nowrap}
+.admin-events__semester{display:grid;grid-template-columns:minmax(0,220px) auto 1fr;align-items:end;gap:10px;margin-bottom:20px;padding:14px;border:1px solid #424242;border-radius:7px;background:#151515}
+.admin-events__semester label{display:grid;gap:6px;color:#bbb;font-size:13px}
+.admin-events__semester input{box-sizing:border-box;width:100%;padding:10px 12px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:14px}
+.admin-events__semester button{padding:10px 16px;border:1px solid #ddd;border-radius:5px;background:#f6f6f6;color:#111;font-size:13px;font-weight:700;cursor:pointer}
+.admin-events__semester button:disabled{opacity:.5;cursor:default}
+.admin-events__semester p{margin:0 0 9px;font-size:12px}
+.admin-events__create{margin-bottom:12px;border:1px solid #4b4b4b;border-radius:7px;background:#252525}
+.admin-events__create-trigger{display:flex;align-items:center;gap:9px;width:100%;min-height:58px;padding:14px 18px;border:0;background:transparent;color:#fff;text-align:left;font-size:15px;font-weight:700;cursor:pointer}
+.admin-events__create-trigger span{font-size:23px;line-height:1}
+.admin-events__create .admin-event-form{padding:0 18px 18px}
+.admin-events__list{border-bottom:1px solid #3f3f3f}
+.admin-event-row{border-top:1px solid #3f3f3f}
+.admin-event-row.is-dragging{opacity:.5}
+.admin-event-row__top{display:flex;align-items:center;gap:12px;min-height:70px}
+.admin-event-row__handle{flex:0 0 35px;height:38px;padding:0;border:1px solid #555;border-radius:5px;background:#262626;color:#bbb;font-size:23px;cursor:grab;touch-action:none}
+.admin-event-row__handle:active{cursor:grabbing}
+.admin-event-row__summary{display:grid;gap:5px;flex:1;min-width:0;padding:11px 0;border:0;background:transparent;color:#fff;text-align:left;cursor:pointer}
+.admin-event-row__summary strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px}
+.admin-event-row__summary:hover strong{text-decoration:underline}
+.admin-event-row__summary small{color:#aaa;font-size:12px}
+.admin-event-row__moves{display:flex;gap:4px}
+.admin-event-row__moves button{width:34px;height:34px;border:1px solid #555;border-radius:5px;background:#282828;color:#ddd;font-size:17px;cursor:pointer}
+.admin-event-row__moves button:disabled{opacity:.35;cursor:default}
+.admin-event-row__detail{padding:0 0 18px 47px}
+.admin-event-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.admin-event-form label{display:grid;gap:7px;color:#bbb;font-size:13px}
+.admin-event-form label small{color:#888;font-size:11px;font-weight:400}
+.admin-event-form__wide,.admin-event-form__actions{grid-column:1/-1}
+.admin-event-form input,.admin-event-form textarea{box-sizing:border-box;width:100%;min-width:0;padding:11px 12px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:14px}
+.admin-event-form textarea{min-height:90px;resize:vertical}
+.admin-event-form__actions{display:flex;align-items:center;gap:8px}
+.admin-event-form__actions button{padding:10px 15px;border:1px solid #ddd;border-radius:5px;background:#f6f6f6;color:#111;font-size:13px;font-weight:700;cursor:pointer}
+.admin-event-form__actions .admin-event-form__cancel{background:#272727;color:#eee;border-color:#555}
+.admin-event-form__actions .admin-event-row__delete{margin-left:auto;background:#c7353f;color:#fff;border-color:#c7353f}
+.admin-event-form__actions .admin-event-row__delete:hover{background:#a92530;border-color:#a92530}
+.admin-event-form__actions button:disabled,.admin-event-row__delete:disabled{opacity:.5;cursor:default}
+.admin-events__empty{padding:18px 0}
+@media(max-width:620px){.admin-events__semester{grid-template-columns:minmax(0,1fr) auto}.admin-events__semester p{grid-column:1/-1}.admin-event-row__top{gap:8px}.admin-event-row__handle{flex-basis:30px;width:30px}.admin-event-row__detail{padding-left:0}.admin-event-form{grid-template-columns:1fr}.admin-event-row__summary strong{font-size:14px}.admin-event-row__moves button{width:28px;height:30px}}

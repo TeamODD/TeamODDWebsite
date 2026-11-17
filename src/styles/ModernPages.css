@@ -1,0 +1,125 @@
+@font-face{font-family:"SBAggro";src:url("/fonts/SBAggro-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+.modern-page{max-width:1120px;margin:0 auto;padding:48px 24px 90px;color:#f6f6f6;min-height:65vh;box-sizing:border-box}
+.modern-page__hero{padding:22px 0 34px;border-bottom:1px solid #393939;margin-bottom:28px}
+.modern-page__hero>span{font-size:12px;letter-spacing:.22em;color:#a8a8a8;font-weight:700}
+.modern-page__hero h1{font-size:clamp(30px,4vw,48px);margin:12px 0 10px;font-weight:700}
+.modern-page__hero p,.modern-panel p{color:#c4c4c4;line-height:1.65}
+.modern-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.modern-panel{background:#1c1d1d;border:1px solid #3d3d3d;border-radius:10px;padding:26px;margin:0 0 20px;box-shadow:inset 0 1px #ffffff0c}
+.modern-panel h2{font-size:22px;margin:0 0 16px}.modern-panel h3{font-size:17px}
+.modern-panel time{font-size:13px;color:#aaa}.modern-note{display:block;color:#a9a9a9;font-size:14px;margin-top:18px}
+.modern-action,.modern-form button,.modern-row button,.modern-review button,.modern-tabs button{display:inline-flex;align-items:center;justify-content:center;border:1px solid #e5e5e5;background:#f6f6f6;color:#111;padding:10px 16px;border-radius:5px;font-size:14px;cursor:pointer;font-weight:600}
+.modern-action{margin-top:18px}.modern-form{display:grid;gap:16px;max-width:780px}.modern-form--grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.modern-form label,.modern-member label{display:grid;gap:7px;color:#ccc;font-size:13px}
+.modern-form input,.modern-form textarea,.modern-form select,.modern-member input,.modern-member select{box-sizing:border-box;width:100%;border:1px solid #555;border-radius:5px;background:#111;color:#fff;padding:12px;font-size:14px}
+.modern-form textarea{min-height:95px;resize:vertical}.modern-form__actions{display:flex;gap:10px;align-items:end}
+.modern-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.modern-tabs button{background:#222;color:#ddd;border-color:#4a4a4a}.modern-tabs button.is-active{background:#fff;color:#111}
+.modern-message{padding:12px 16px;background:#292929;border:1px solid #555;border-radius:5px}.modern-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid #3d3d3d}.modern-row strong{flex:1}.modern-row span{color:#aaa}.modern-row button,.modern-review button{padding:7px 12px}
+.modern-member{display:grid;grid-template-columns:1.4fr 110px 140px 100px;gap:16px;padding:20px 0;border-top:1px solid #393939;align-items:center}.modern-member>div:first-child{display:grid;gap:6px}.modern-member small{color:#aaa}.modern-assignments{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px}.modern-assignments label{display:flex;align-items:center}.modern-assignments input{width:auto}
+.modern-review{border-top:1px solid #444;padding:18px 0}.modern-review button{margin-right:8px}
+.modern-tile{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;padding:16px;margin:16px 0;border:1px solid #444;border-radius:7px}.modern-tile label{display:grid;gap:7px;color:#bbb;font-size:13px}.modern-tile input,.modern-tile select{width:100%;box-sizing:border-box;background:#111;color:#fff;border:1px solid #555;border-radius:5px;padding:9px}.modern-tile button{background:#333;color:#fff;border:1px solid #666;cursor:pointer}
+.project-reviews{max-width:1080px;margin:28px auto}.project-reviews .modern-form{padding-top:18px;border-top:1px solid #444}
+@media(max-width:780px){.modern-member{grid-template-columns:1fr 1fr}.modern-member>div:first-child{grid-column:1/-1}}
+
+.preview-layout main.admin-main {
+  position: relative;
+  isolation: isolate;
+  background: #000;
+}
+
+.preview-layout main.admin-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 1px 1px, #a0a0a02e 0.8px, transparent 1px);
+  background-size: 5px 5px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 180px, #000 900px);
+  mask-image: linear-gradient(to bottom, transparent 0, transparent 180px, #000 900px);
+}
+
+.admin-main .admin-modern {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-modern>.modern-page__hero{border-bottom:0;margin-bottom:0;padding-bottom:28px}
+.admin-pending-header{border-bottom:1px solid #393939;margin-bottom:28px;padding-bottom:28px}
+.admin-pending-summary{display:flex;align-items:center;gap:22px;margin:0;padding:22px 26px;background:#1c1d1d;border:1px solid #3d3d3d;border-radius:10px}
+.admin-pending-summary>div{flex:1;min-width:0}
+.admin-pending-summary h2{margin:0;font-family:"SBAggro","Pretendard",sans-serif;font-weight:500;font-size:21px}
+.admin-pending-summary p{margin:8px 0 0;color:#bdbdbd;font-size:13px;line-height:1.4}
+.admin-pending-summary>strong{font-size:36px;line-height:1}
+.admin-pending-summary>strong span{font-size:16px;margin-left:3px}
+.admin-pending-summary.has-pending h2,.admin-pending-summary.has-pending>strong{color:#ff5b5b}
+.admin-pending-summary>a,.admin-pending-actions button{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid #e5e5e5;background:#f6f6f6;color:#111;padding:10px 16px;border-radius:5px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap}
+.admin-pending-back{display:inline-block;color:#bbb;text-decoration:none;margin-bottom:16px;font-size:14px}
+.admin-pending-back:hover{text-decoration:underline;color:#fff}
+.admin-pending-count{color:#aaa;font-size:15px;font-weight:400;margin-left:6px}
+.admin-pending-empty{margin:0}
+.admin-pending-item{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0;border-top:1px solid #444}
+.admin-pending-item strong{font-size:16px}
+.admin-pending-item p{margin:6px 0 0;font-size:14px;overflow-wrap:anywhere}
+.admin-pending-review-body{white-space:pre-wrap}
+.admin-pending-actions{display:flex;gap:8px;flex-shrink:0}
+.admin-pending-actions button:last-child{background:#292929;color:#eee;border-color:#606060}
+.admin-pending-actions button:disabled{opacity:.5;cursor:wait}
+.admin-pending-more{display:block;width:100%;padding:13px;margin-top:8px;background:#292929;border:1px solid #555;border-radius:5px;color:#eee;font-size:14px;cursor:pointer}
+.admin-workspace{display:grid;grid-template-columns:176px minmax(0,1fr);align-items:start;gap:24px}
+.admin-workspace__content{min-width:0}
+.admin-sidebar.modern-tabs{display:flex;flex-direction:column;flex-wrap:nowrap;gap:6px;margin:0;padding:10px;background:#181919;border:1px solid #393939;border-radius:10px}
+.admin-sidebar.modern-tabs button{justify-content:flex-start;text-align:left;width:100%;min-height:42px;padding:10px 14px;background:transparent;border-color:transparent;color:#c9c9c9}
+.admin-sidebar.modern-tabs button:hover{background:#292929;color:#fff}
+.admin-sidebar.modern-tabs button.is-active{background:#f6f6f6;color:#111}
+.admin-members__heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
+.admin-members__heading h2{margin:0 0 6px}
+.admin-members__heading p{margin:0;font-size:14px}
+.admin-members__heading>span{color:#aaa;font-size:14px;white-space:nowrap}
+.admin-members__filters{display:grid;grid-template-columns:minmax(180px,1.6fr) repeat(3,minmax(110px,1fr));gap:10px;margin:0 0 18px}
+.admin-members__filters label{display:grid;gap:6px;color:#bbb;font-size:12px}
+.admin-members__filters input,.admin-members__filters select,.admin-member-card__fields input,.admin-member-card__fields select,.admin-member-card__projects>input{box-sizing:border-box;border:1px solid #555;border-radius:5px;background:#111;color:#fff;padding:10px 12px;font-size:14px}
+.admin-members__filters input,.admin-members__filters select{width:100%;min-width:0}
+.admin-members__list{border-bottom:1px solid #3d3d3d}
+.admin-member-card{border-top:1px solid #3d3d3d}
+.admin-member-card__summary{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(140px,auto) 22px;align-items:center;gap:16px;width:100%;padding:16px 0;border:0;background:transparent;color:#fff;text-align:left;cursor:pointer}
+.admin-member-card__summary:hover .admin-member-card__identity strong{text-decoration:underline}
+.admin-member-card__identity{display:grid;min-width:0;gap:5px}
+.admin-member-card__identity strong,.admin-member-card__identity small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-member-card__identity small,.admin-member-card__meta{color:#aaa;font-size:13px}
+.admin-member-card__badge{padding:5px 9px;border:1px solid #555;border-radius:4px;color:#ddd;font-size:12px;white-space:nowrap}
+.admin-member-card__badges{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.admin-member-card__chevron{font-size:23px;color:#aaa;text-align:right;line-height:1}
+.admin-member-card__detail{padding:18px;margin:0 0 16px;background:#151515;border:1px solid #333;border-radius:7px}
+.admin-member-card__detail>p{margin:0 0 18px;font-size:13px}
+.admin-member-card__fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.admin-member-card__fields label{display:grid;gap:7px;color:#bbb;font-size:13px}
+.admin-member-card__fields input,.admin-member-card__fields select{width:100%;min-width:0}
+.admin-member-card__score{display:grid;gap:5px;color:#bbb;font-size:13px}
+.admin-member-card__score strong{display:flex;align-items:center;min-height:40px;padding:0 12px;border:1px solid #444;border-radius:5px;background:#222;font-size:16px}
+.admin-member-card__score-value--zero{color:#ff6b6b}
+.admin-member-card__score-value--neutral{color:#fff}
+.admin-member-card__score-value--gold{color:#e8bc5b;text-shadow:0 0 8px #c8913c88}
+.admin-member-card__readonly{display:flex;align-items:center;min-height:40px;padding:0 12px;border:1px solid #444;border-radius:5px;background:#222;color:#ddd}
+.admin-member-card__projects{margin-top:20px;padding-top:16px;border-top:1px solid #333}
+.admin-member-card__projects summary{cursor:pointer;font-size:14px;font-weight:600}
+.admin-member-card__semester-filter{display:grid;gap:6px;max-width:220px;margin-top:16px;color:#bbb;font-size:12px}
+.admin-member-card__semester-filter select{padding:9px 11px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:13px}
+.admin-member-card__semester-groups{max-height:320px;overflow-y:auto}
+.admin-member-card__semester-group{margin:0 0 16px}
+.admin-member-card__semester-group h4{display:flex;align-items:center;gap:8px;margin:8px 0 9px;color:#eee;font-size:13px}
+.admin-member-card__semester-group h4 span{color:#e8bc5b;font-size:11px;font-weight:400}
+.admin-member-card__semester-group .admin-member-card__project-list{max-height:none;overflow:visible}
+.admin-member-card__categories{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+.admin-member-card__categories button{padding:7px 11px;border:1px solid #505050;border-radius:5px;background:#272727;color:#ddd;font-size:12px;cursor:pointer}
+.admin-member-card__categories button[aria-pressed="true"]{background:#f6f6f6;border-color:#f6f6f6;color:#111;font-weight:700}
+.admin-member-card__projects>input{width:100%;margin:10px 0}
+.admin-member-card__project-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:240px;overflow-y:auto}
+.admin-member-card__project-list label{display:flex;align-items:center;gap:8px;min-width:0;padding:8px;border:1px solid #353535;border-radius:4px;color:#ddd;font-size:13px;overflow-wrap:anywhere}
+.admin-member-card__project-list input{flex:0 0 auto;accent-color:#fff}
+.admin-member-card__project-list label span{display:grid;gap:4px;min-width:0}
+.admin-member-card__project-list label small{color:#999;font-size:11px}
+@media(max-width:860px){.admin-workspace{display:block}.admin-sidebar.modern-tabs{flex-direction:row;overflow-x:auto;gap:6px;margin-bottom:20px;scrollbar-width:thin}.admin-sidebar.modern-tabs button{flex:0 0 auto;width:auto;white-space:nowrap}}
+@media(max-width:720px){.admin-members__filters{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-members__filters label:first-child{grid-column:1/-1}}
+@media(max-width:620px){.admin-members__heading{flex-direction:column;gap:8px}.admin-member-card__summary{grid-template-columns:minmax(0,1fr) auto 22px;gap:10px}.admin-member-card__meta{grid-column:1/3;grid-row:2}.admin-member-card__fields{grid-template-columns:1fr}.admin-member-card__project-list{grid-template-columns:1fr}}
+@media(max-width:620px){.admin-pending-summary{flex-wrap:wrap;gap:12px;padding:18px}.admin-pending-summary>div{flex-basis:calc(100% - 85px)}.admin-pending-summary>a{width:100%}.admin-pending-item{align-items:stretch;flex-direction:column}.admin-pending-actions button{flex:1}}

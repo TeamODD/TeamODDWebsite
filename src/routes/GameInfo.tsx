@@ -1,16 +1,25 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ref, get } from "firebase/database";
+import { ref, get, set } from "firebase/database";
 import { database } from "../firebase";
 import { Game } from "../types/game";
 import Loading from "../components/Loading";
 import "../styles/GameInfo.css";
 import GradientButton from "../components/GradientButton";
+import ProjectReviews from "../components/ProjectReviews";
+import { useMemberRole } from "../auth/useMemberRole";
+import "../styles/ModernPages.css";
 
 const GameInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [game, setGame] = useState<Game | null>(null);
+  const [gameKey, setGameKey] = useState("");
+  const [canEdit, setCanEdit] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState({ title:"", description:"", detail:"", imageUrl:"", link:"" });
+  const [message, setMessage] = useState("");
+  const { user, role } = useMemberRole();
   const [isDownload, setIsDownLoad] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
 
@@ -21,11 +30,12 @@ const GameInfo = () => {
         const snapshot = await get(gamesRef);
         if (snapshot.exists()) {
           const gamesData = snapshot.val();
-          const foundGame = Object.values(gamesData).find(
-            (game: any) => game.id.toString() === id
+          const found = Object.entries(gamesData).find(
+            ([, game]) => (game as Game).id.toString() === id
           );
-          if (foundGame) {
-            setGame(foundGame as Game);
+          if (found) {
+            setGameKey(found[0]);
+            setGame(found[1] as Game);
           } else {
             setGame(null);
           }
@@ -44,10 +54,21 @@ const GameInfo = () => {
   }, [id]);
 
   useEffect(() => {
-    if (game) {
-      setIsDownLoad(game.link !== "");
-    }
+    if (game) setIsDownLoad(/^https?:\/\//i.test(game.link || ""));
   }, [game]);
+
+  useEffect(() => {
+    if (!gameKey || !user?.uid || role === "guest") { setCanEdit(false); return; }
+    if (role === "admin") { setCanEdit(true); return; }
+    if (role !== "member") { setCanEdit(false); return; }
+    get(ref(database,`gameMembers/${gameKey}/${user.uid}`)).then(s=>setCanEdit(s.val()===true)).catch(()=>setCanEdit(false));
+  },[gameKey,user?.uid,role]);
+
+  const saveEdit = async (event: React.FormEvent) => {
+    event.preventDefault(); if (!game || !canEdit) return;
+    try { const updated = {...game,...draft}; await set(ref(database,`games/${gameKey}`),updated); setGame(updated); setEditing(false); setMessage("프로젝트를 저장했습니다."); }
+    catch { setMessage("저장하지 못했습니다. 담당 프로젝트 권한을 확인해 주세요."); }
+  };
 
   if (loading) {
     return <Loading />;
@@ -85,7 +106,7 @@ const GameInfo = () => {
           <div className="download-link-button">
             <GradientButton
               innerText="다운로드↗"
-              onClick={() => window.open(game.link, "_blank")}
+              onClick={() => window.open(game.link, "_blank", "noopener,noreferrer")}
             />
           </div>
         )}
@@ -117,6 +138,9 @@ const GameInfo = () => {
           </span>
         ))}
       </div>
+
+      {canEdit && <section className="modern-panel"><button onClick={() => { setDraft({title:game.title,description:game.description,detail:game.detail,imageUrl:game.imageUrl,link:game.link||""});setEditing(!editing); }}>프로젝트 수정</button>{editing && <form className="modern-form" onSubmit={saveEdit}>{(["title","description","detail","imageUrl","link"] as const).map(field => <label key={field}>{({title:"제목",description:"설명",detail:"상세 설명",imageUrl:"이미지 경로",link:"다운로드 URL"})[field]}{field==="detail"||field==="description"?<textarea value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})}/>:<input value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})}/>}</label>)}<button>저장</button></form>}{message && <p role="status">{message}</p>}</section>}
+      {gameKey && <ProjectReviews gameKey={gameKey} game={game} />}
 
       <Link to="/projects" className="back-to-list">
         목록으로

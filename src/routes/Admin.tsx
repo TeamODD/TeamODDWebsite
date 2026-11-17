@@ -60,12 +60,11 @@ const Admin = () => {
   });
 
   // 데이터베이스 참조를 상수로 분리
-  const gamesRef = ref(database, "games");
 
   // useCallback을 사용하여 함수 재생성 방지
   const fetchGames = useCallback(async () => {
     try {
-      const snapshot = await get(gamesRef);
+      const snapshot = await get(ref(database, "games"));
       if (snapshot.exists()) {
         const gamesData = Object.entries(snapshot.val()).map(([key, data]) => ({
           ...(data as Omit<Game, "id">),

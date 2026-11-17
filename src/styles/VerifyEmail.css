@@ -1,0 +1,103 @@
+.verify-shell {
+  width: min(100%, 640px);
+  min-height: 480px;
+  grid-template-columns: 1fr;
+}
+
+.verify-content {
+  width: min(100% - 64px, 460px);
+  padding: 84px 0 48px;
+  text-align: center;
+}
+
+.verify-content__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #555;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 26px;
+}
+
+.verify-content h1 {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: 30px;
+}
+
+.verify-content p {
+  margin: 0 0 8px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.verify-content p strong {
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.verify-content__message,
+.verify-content p.verify-content__message {
+  margin-top: 18px;
+  color: #d6d6d6;
+}
+
+.verify-content p.verify-content__message--error {
+  color: #ef8688;
+}
+
+.verify-content__check {
+  margin-top: 28px;
+}
+
+.verify-content__actions {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+}
+
+.verify-content__actions button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #bcbcbc;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.verify-content__actions button:hover:not(:disabled) {
+  color: #fff;
+}
+
+.verify-content__actions button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.verify-content__actions button:focus-visible {
+  outline: 2px solid #f5ad63;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .verify-shell {
+    min-height: 0;
+  }
+
+  .verify-content {
+    width: min(100% - 48px, 460px);
+    padding: 80px 0 48px;
+  }
+
+  .verify-content h1 {
+    font-size: 26px;
+  }
+}

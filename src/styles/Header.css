@@ -21,6 +21,27 @@
   margin: 0;
 }
 
+.header-account {
+  display: flex;
+  align-items: center;
+  flex: none;
+  margin-left: 24px;
+}
+
+.header-account .odd-top-bar-preview__create-account {
+  font-size: 14px;
+  color: #fff;
+}
+
+.header-account .odd-top-bar-preview__login {
+  font-size: 14px;
+  color: #fff;
+}
+
+.header-account .odd-top-bar-preview__login:hover {
+  color: #050505;
+}
+
 a {
   text-decoration: none;
   color: #fff;
@@ -97,6 +118,9 @@ a {
   cursor: pointer;
   /* margin-bottom: 1rem; */
   z-index: 100;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .hamburger span {

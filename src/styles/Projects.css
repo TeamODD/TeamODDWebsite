@@ -3,7 +3,10 @@
 }
 
 .projects-page {
-  padding: 20px;
+  padding: 48px 24px 90px;
+  max-width: 1120px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .year-filter {
@@ -111,6 +114,12 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.projects-empty {
+  padding: 48px 0;
+  text-align: center;
+  color: #bcbcbc;
 }
 
 .games-grid {

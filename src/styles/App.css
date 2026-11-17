@@ -1,12 +1,24 @@
 body {
   margin: 0;
   padding: 0;
+  min-width: 320px;
   background-color: #1a1a1a;
   color: white;
   /* -webkit-user-select: none;
   -moz-user-select: none;
   -ms-use-select: none;
   user-select: none; */
+}
+
+.header {
+  min-width: 320px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body,
+  .header {
+    min-width: 482px;
+  }
 }
 
 @font-face {
@@ -34,6 +46,42 @@ body {
   src: local("Pretendard Bold"),
     url("/fonts/Pretendard-Bold.woff2") format("woff2"),
     url("/fonts/Pretendard-Bold.woff") format("woff");
+}
+
+/* Square One - Regular */
+@font-face {
+  font-family: "SquareOne";
+  src: url("/fonts/SquareOne.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Square One - Bold */
+@font-face {
+  font-family: "SquareOne";
+  src: url("/fonts/SquareOne-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Square One - Italic */
+@font-face {
+  font-family: "SquareOne";
+  src: url("/fonts/SquareOne-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Square One - Bold Italic */
+@font-face {
+  font-family: "SquareOne";
+  src: url("/fonts/SquareOne-Bold-Italic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 * {
