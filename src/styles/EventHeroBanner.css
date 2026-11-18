@@ -1,0 +1,94 @@
+.event-hero-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  background: #050505;
+}
+
+.event-hero-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.event-hero-banner::before,
+.event-hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.event-hero-banner::before {
+  z-index: 1;
+  background: linear-gradient(to right, #050505 0%, #050505b3 5%, transparent 22%, transparent 78%, #050505b3 95%, #050505 100%);
+}
+
+.event-hero-banner::after {
+  z-index: 2;
+  background-image: radial-gradient(circle at 1px 1px, #a0a0a04d 0.8px, transparent 1px);
+  background-size: 5px 5px;
+  -webkit-mask-image: linear-gradient(to right, #000, transparent 24%, transparent 76%, #000);
+  mask-image: linear-gradient(to right, #000, transparent 24%, transparent 76%, #000);
+}
+
+.event-banner-editor__preview {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid #3d3d3d;
+  border-radius: 8px;
+}
+
+.event-banner-editor__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.event-banner-editor__images,
+.event-banner-editor__library {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+
+.modern-form .event-banner-editor__image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 2px solid #484848;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.event-banner-editor__image.is-selected {
+  border-color: #f5ad63;
+  background: #f5ad6310;
+}
+
+.event-banner-editor__image img {
+  width: 100%;
+  height: auto;
+}
+
+.modern-form .event-banner-editor__image input {
+  width: auto;
+  align-self: flex-start;
+}
+
+.event-banner-editor__saved {
+  padding: 16px;
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
+.event-banner-editor__saved h3 { margin-top: 16px; }
+.event-banner-editor__badge { margin-left: 12px; color: #f5ad63; font-size: 12px; }

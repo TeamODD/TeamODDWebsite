@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { onValue, ref } from "firebase/database";
 import { database } from "../firebase";
 import HomeFeaturedProjects from "../components/HomeFeaturedProjects";
+import EventHeroBanner from "../components/EventHeroBanner";
+import { parseEventBanner, type EventBanner } from "../types/eventBanner";
 import "../styles/HomePreview.css";
 import { useSiteLanguage, tr } from "../i18n/siteLanguage";
 
@@ -135,6 +137,10 @@ const BannerPanel = ({
 
 const HomePreview = () => {
   const language = useSiteLanguage();
+  const [eventBanner, setEventBanner] = useState<EventBanner | null>(null);
+  useEffect(() => onValue(ref(database, "eventHeroBanner"), snapshot => {
+    setEventBanner(parseEventBanner(snapshot.val()));
+  }, () => setEventBanner(null)), []);
   const [banners, setBanners] = useState<HomeBanner[]>(defaultBanners);
   const [activeIndex, setActiveIndex] = useState(0);
   const [transition, setTransition] = useState<{ to: number; direction: -1 | 1 } | null>(null);
@@ -183,6 +189,8 @@ const HomePreview = () => {
   useEffect(() => () => window.clearTimeout(transitionTimer.current), []);
 
   return (
+    <>
+    {eventBanner && <EventHeroBanner key={eventBanner.imageSrc} banner={eventBanner} />}
     <div className="home-preview">
       <div className="home-preview__background" aria-hidden="true">
         <video autoPlay loop muted playsInline preload="metadata" disablePictureInPicture>
@@ -248,6 +256,7 @@ const HomePreview = () => {
         </HomeSection>
       ))}
     </div>
+    </>
   );
 };
 

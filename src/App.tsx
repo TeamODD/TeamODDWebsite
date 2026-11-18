@@ -27,6 +27,7 @@ const Operations = lazy(() => import("./routes/Operations"));
 const ClubIntro = lazy(() => import("./routes/ClubIntro"));
 const AdminConsole = lazy(() => import("./routes/AdminConsole"));
 const AdminPending = lazy(() => import("./routes/AdminPending"));
+const AdminEventBanner = lazy(() => import("./routes/AdminEventBanner"));
 
 function App() {
   return (
@@ -82,6 +83,14 @@ const AppContent = memo(() => {
               element={
                 <ProtectedRoute>
                   <AdminConsole />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/event-banner"
+              element={
+                <ProtectedRoute>
+                  <AdminEventBanner />
                 </ProtectedRoute>
               }
             />

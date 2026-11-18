@@ -66,6 +66,28 @@
         }
       }
     },
+    "eventBannerLibrary": {
+      ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+      "$bannerId": {
+        ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        ".validate": "newData.hasChildren(['title', 'imageSrc'])",
+        "title": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 100" },
+        "imageSrc": { ".validate": "newData.isString() && newData.val().length <= 500 && newData.val().beginsWith('/images/event-banners/')" },
+        "$other": { ".validate": false }
+      }
+    },
+    "eventHeroBanner": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+      ".validate": "newData.hasChildren(['title', 'imageSrc'])",
+      "title": {
+        ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 100"
+      },
+      "imageSrc": {
+        ".validate": "newData.isString() && newData.val().length <= 500 && (newData.val().beginsWith('/images/') || newData.val().beginsWith('https://'))"
+      },
+      "$other": { ".validate": false }
+    },
     "banners": {
       ".read": true,
       "$bannerId": {
