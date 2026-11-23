@@ -1,0 +1,5 @@
+.project-file-upload{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.project-file-upload__button{position:relative;display:inline-flex;align-items:center;min-height:32px;padding:5px 10px;border:1px solid #777;border-radius:5px;background:#1c1c1c;color:#eee;font-size:12px;cursor:pointer}
+.project-file-upload__button:hover{border-color:#ffc45a;color:#ffc45a}
+.project-file-upload__button input{position:absolute;width:1px;height:1px;opacity:0}
+.project-file-upload small{color:#aaa;font-size:11px}

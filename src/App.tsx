@@ -5,6 +5,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
   useLocation,
 } from "react-router-dom";
 import { lazy, memo, Suspense, useEffect, useState } from "react";
@@ -14,7 +15,7 @@ import Loading from "./components/Loading";
 import ScrollToTop from "./components/ScrollToTop";
 
 const HomePreview = lazy(() => import("./routes/HomePreview"));
-const Projects = lazy(() => import("./routes/Projects"));
+const ProjectsPreview = lazy(() => import("./routes/ProjectsPreview"));
 const Join = lazy(() => import("./routes/Join"));
 const Contact = lazy(() => import("./routes/Contact"));
 const Login = lazy(() => import("./routes/Login"));
@@ -22,6 +23,8 @@ const Signup = lazy(() => import("./routes/Signup"));
 const VerifyEmail = lazy(() => import("./routes/VerifyEmail"));
 const Profile = lazy(() => import("./routes/Profile"));
 const GameInfo = lazy(() => import("./routes/GameInfo"));
+const ProjectApplication = lazy(() => import("./routes/ProjectApplication"));
+const ProjectEditor = lazy(() => import("./routes/ProjectEditor"));
 const Events = lazy(() => import("./routes/Events"));
 const Operations = lazy(() => import("./routes/Operations"));
 const ClubIntro = lazy(() => import("./routes/ClubIntro"));
@@ -63,12 +66,15 @@ const AppContent = memo(() => {
 
       {!isAuthPage && <Header isPreview={isPreview} />}
 
-      <main className={location.pathname.startsWith("/admin") ? "admin-main" : undefined}>
+      <main className={location.pathname === "/projects" || location.pathname === "/projects-preview" ? "project-preview-shell" : location.pathname.startsWith("/admin") ? "admin-main" : undefined}>
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<HomePreview />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects" element={<ProjectsPreview />} />
+            <Route path="/projects-preview" element={<Navigate to={{pathname: "/projects", search: location.search}} replace />} />
             <Route path="/project/:id" element={<GameInfo />} />
+            <Route path="/project/:id/edit" element={<ProjectEditor />} />
+            <Route path="/projects/apply" element={<ProjectApplication />} />
             <Route path="/join" element={<Join />} />
             <Route path="/events" element={<Events />} />
             <Route path="/operations" element={<Operations />} />
@@ -104,13 +110,13 @@ const AppContent = memo(() => {
             />
             <Route
               path="/home-preview"
-              element={<HomePreview />}
+              element={<Navigate to="/" replace />}
             />
           </Routes>
         </Suspense>
       </main>
 
-      {!isAuthPage && <Footer />}
+      {!isAuthPage && location.pathname !== "/projects" && location.pathname !== "/projects-preview" && <Footer />}
     </div>
   );
 });

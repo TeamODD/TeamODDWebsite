@@ -30,6 +30,7 @@ const Signup = () => {
   const [loginId, setLoginId] = useState("");
   const [nickname, setNickname] = useState("");
   const [realName, setRealName] = useState("");
+  const [studentNumber, setStudentNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -44,6 +45,7 @@ const Signup = () => {
     const normalizedId = normalizeLoginId(loginId);
     const trimmedNickname = nickname.trim();
     const trimmedRealName = realName.trim();
+    const trimmedStudentNumber = studentNumber.trim();
     const trimmedEmail = email.trim();
 
     if (!isValidLoginId(normalizedId)) {
@@ -56,6 +58,10 @@ const Signup = () => {
     }
     if (trimmedRealName.length < 2 || trimmedRealName.length > 50) {
       setError("본명은 2~50자로 입력해 주세요.");
+      return;
+    }
+    if (accountType === "member" && !/^[0-9]{6,12}$/.test(trimmedStudentNumber)) {
+      setError("학번은 숫자 6~12자로 입력해 주세요.");
       return;
     }
     if (password.length < 8) {
@@ -93,6 +99,7 @@ const Signup = () => {
         loginId: normalizedId,
         nickname: trimmedNickname,
         realName: trimmedRealName,
+        ...(accountType === "member" ? { studentNumber: trimmedStudentNumber } : {}),
         registrationIntent: accountType,
         createdAt: Date.now(),
       });
@@ -134,7 +141,7 @@ const Signup = () => {
 
       <div className="login-shell signup-shell">
         <section className="login-panel" aria-labelledby="signup-title">
-          <Link className="login-panel__back" to="/home-preview">
+          <Link className="login-panel__back" to="/">
             <FiArrowLeft aria-hidden="true" /> 홈으로 돌아가기
           </Link>
           <div className={`login-panel__content signup-panel__content${accountType === null ? " signup-panel__content--choice" : ""}`}>
@@ -195,6 +202,14 @@ const Signup = () => {
                   onChange={(event) => { setRealName(event.target.value); setError(""); }}
                   minLength={2} maxLength={50} required />
               </div>
+
+              {accountType === "member" && <div className="login-field signup-form__full">
+                <label className="login-field__sr-only" htmlFor="signup-student-number">학번</label>
+                <input id="signup-student-number" type="text" name="studentNumber" inputMode="numeric" autoComplete="off"
+                  placeholder="학번 (숫자 6~12자)" value={studentNumber}
+                  onChange={(event) => { setStudentNumber(event.target.value); setError(""); }}
+                  pattern="[0-9]{6,12}" minLength={6} maxLength={12} required />
+              </div>}
 
               <div className="login-field signup-form__full">
                 <label className="login-field__sr-only" htmlFor="signup-email">이메일</label>

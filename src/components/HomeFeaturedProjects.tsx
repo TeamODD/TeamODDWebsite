@@ -6,6 +6,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { database } from "../firebase";
 import { homeProjectPages, type HomeProjectPage } from "../data/homeProjectPages";
 import type { Game } from "../types/game";
+import { projectAssetUrl } from "../utils/projectAssetUrl";
 import "../styles/HomeFeaturedProjects.css";
 
 const HomeFeaturedProjects = () => {
@@ -96,7 +97,7 @@ const HomeFeaturedProjects = () => {
                       </span>
                     )}
                     <img
-                      src={`${import.meta.env.BASE_URL}${game.imageUrl.replace(/^\//, "")}`}
+                      src={projectAssetUrl(game.imageUrl)}
                       alt=""
                       loading="lazy"
                     />

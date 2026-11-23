@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useNavigate, Link, useSearchParams } from "react-router-dom";
 import { ref, get, set } from "firebase/database";
 import { database } from "../firebase";
 import { Game } from "../types/game";
@@ -7,12 +7,16 @@ import Loading from "../components/Loading";
 import "../styles/GameInfo.css";
 import GradientButton from "../components/GradientButton";
 import ProjectReviews from "../components/ProjectReviews";
+import ProjectFileUpload from "../components/ProjectFileUpload";
+import { projectAssetUrl } from "../utils/projectAssetUrl";
 import { useMemberRole } from "../auth/useMemberRole";
 import "../styles/ModernPages.css";
 
 const GameInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const openedEditRef = useRef(false);
   const [game, setGame] = useState<Game | null>(null);
   const [gameKey, setGameKey] = useState("");
   const [canEdit, setCanEdit] = useState(false);
@@ -64,6 +68,14 @@ const GameInfo = () => {
     get(ref(database,`gameMembers/${gameKey}/${user.uid}`)).then(s=>setCanEdit(s.val()===true)).catch(()=>setCanEdit(false));
   },[gameKey,user?.uid,role]);
 
+  useEffect(() => {
+    if (searchParams.get("edit") !== "1" || !canEdit || !game || openedEditRef.current) return;
+    openedEditRef.current = true;
+    setDraft({title:game.title,description:game.description,detail:game.detail,imageUrl:game.imageUrl,link:game.link||""});
+    setEditing(true);
+    requestAnimationFrame(() => document.getElementById("project-edit")?.scrollIntoView({block:"start"}));
+  }, [searchParams, canEdit, game]);
+
   const saveEdit = async (event: React.FormEvent) => {
     event.preventDefault(); if (!game || !canEdit) return;
     try { const updated = {...game,...draft}; await set(ref(database,`games/${gameKey}`),updated); setGame(updated); setEditing(false); setMessage("프로젝트를 저장했습니다."); }
@@ -114,11 +126,11 @@ const GameInfo = () => {
 
       <div className="game-info-image">
         {/* <BlurImage
-          src={`${import.meta.env.BASE_URL}${game.imageUrl}`}
+          src={projectAssetUrl(game.imageUrl)}
           alt={game.title}
         /> */}
         <img
-          src={`${import.meta.env.BASE_URL}${game.imageUrl}`}
+          src={projectAssetUrl(game.imageUrl)}
           alt={game.title}
         />
       </div>
@@ -139,7 +151,7 @@ const GameInfo = () => {
         ))}
       </div>
 
-      {canEdit && <section className="modern-panel"><button onClick={() => { setDraft({title:game.title,description:game.description,detail:game.detail,imageUrl:game.imageUrl,link:game.link||""});setEditing(!editing); }}>프로젝트 수정</button>{editing && <form className="modern-form" onSubmit={saveEdit}>{(["title","description","detail","imageUrl","link"] as const).map(field => <label key={field}>{({title:"제목",description:"설명",detail:"상세 설명",imageUrl:"이미지 경로",link:"다운로드 URL"})[field]}{field==="detail"||field==="description"?<textarea value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})}/>:<input value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})}/>}</label>)}<button>저장</button></form>}{message && <p role="status">{message}</p>}</section>}
+      {canEdit && <section id="project-edit" className="modern-panel"><button onClick={() => { setDraft({title:game.title,description:game.description,detail:game.detail,imageUrl:game.imageUrl,link:game.link||""});setEditing(!editing); }}>프로젝트 수정</button>{editing && <form className="modern-form" onSubmit={saveEdit}>{(["title","description","detail","imageUrl","link"] as const).map(field => <div key={field}><label>{({title:"제목",description:"설명",detail:"상세 설명",imageUrl:"이미지 경로",link:"다운로드 URL"})[field]}{field==="detail"||field==="description"?<textarea value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})}/>:<input value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})}/>}</label>{(field==="imageUrl"||field==="link")&&<ProjectFileUpload projectKey={gameKey} imageOnly={field==="imageUrl"} onUploaded={url=>setDraft(current=>({...current,[field]:url}))} />}</div>)}<button>저장</button></form>}{message && <p role="status">{message}</p>}</section>}
       {gameKey && <ProjectReviews gameKey={gameKey} game={game} />}
 
       <Link to="/projects" className="back-to-list">

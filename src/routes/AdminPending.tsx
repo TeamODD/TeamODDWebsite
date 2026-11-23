@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { onValue, ref, update } from "firebase/database";
 import { database } from "../firebase";
 import type { Game } from "../types/game";
+import type { ProjectApplications } from "../types/projectApplication";
 import { getPendingCounts, type PendingPerson, type ReviewSubmissions } from "../utils/adminPending";
 import "../styles/ModernPages.css";
 
@@ -12,6 +13,7 @@ export default function AdminPending() {
   const [roles, setRoles] = useState<Record<string, string>>({});
   const [applicationStatus, setApplicationStatus] = useState<Record<string, string>>({});
   const [reviews, setReviews] = useState<ReviewSubmissions>({});
+  const [projectApplications, setProjectApplications] = useState<ProjectApplications>({});
   const [message, setMessage] = useState("");
   const [busyKey, setBusyKey] = useState<string | null>(null);
   const [visibleMembers, setVisibleMembers] = useState(20);
@@ -24,11 +26,12 @@ export default function AdminPending() {
       onValue(ref(database, "roles"), snapshot => setRoles(snapshot.val() || {})),
       onValue(ref(database, "memberApplicationStatus"), snapshot => setApplicationStatus(snapshot.val() || {})),
       onValue(ref(database, "reviewSubmissions"), snapshot => setReviews(snapshot.val() || {})),
+      onValue(ref(database, "projectApplications"), snapshot => setProjectApplications(snapshot.val() || {})),
     ];
     return () => subscriptions.forEach(unsubscribe => unsubscribe());
   }, []);
 
-  const pending = getPendingCounts(reviews, users, roles, applicationStatus);
+  const pending = getPendingCounts(reviews, users, roles, applicationStatus, projectApplications);
   const memberEntries = Object.entries(users)
     .filter(([uid, person]) => person.registrationIntent === "member" && roles[uid] !== "member" && !applicationStatus[uid])
     .sort(([, a], [, b]) => (a.createdAt || 0) - (b.createdAt || 0));
@@ -68,9 +71,23 @@ export default function AdminPending() {
     }
   };
 
+  const handleProject = async (uid: string, approve: boolean) => {
+    const application = projectApplications[uid];
+    if (!application) return;
+    setBusyKey(`project-${uid}`);
+    try {
+      const id = Date.now();
+      const name = users[uid]?.realName || application.applicantName;
+      const project: Game = {id, title:application.title, description:application.description, detail:application.description, platform:"", engine:"", year:String(new Date().getFullYear()), project:"부원 프로젝트", imageUrl:"/logo.png", developer:name, developerProfiles:[{source:"account", sourceId:uid, name, part:""}], reviewPolicy:"off"};
+      await update(ref(database), { [`projectApplications/${uid}`]:null, ...(approve ? { [`games/${id}`]:project, [`gameMembers/${id}/${uid}`]:true } : {}) });
+      setMessage(approve ? "프로젝트를 승인하고 신청자를 참여자로 등록했습니다." : "프로젝트 신청을 반려했습니다.");
+    } catch { setMessage("프로젝트 신청을 처리하지 못했습니다."); }
+    finally { setBusyKey(null); }
+  };
+
   return <div className="modern-page admin-modern admin-pending-page">
     <Link className="admin-pending-back" to="/admin">← 대시보드로 돌아가기</Link>
-    <header className="modern-page__hero"><h1>처리 대기</h1><p>부원 계정 신청과 리뷰를 확인하고 처리합니다. 현재 {pending.total}건이 남았습니다.</p></header>
+    <header className="modern-page__hero"><h1>처리 대기</h1><p>부원 계정·프로젝트 신청과 리뷰를 확인하고 처리합니다. 현재 {pending.total}건이 남았습니다.</p></header>
     {message && <p className="modern-message" role="status">{message}</p>}
     <section className="modern-panel" aria-labelledby="pending-members-title">
       <h2 id="pending-members-title">부원 계정 신청 <span className="admin-pending-count">{pending.members}건</span></h2>
@@ -79,6 +96,13 @@ export default function AdminPending() {
         <div className="admin-pending-actions"><button type="button" disabled={busyKey !== null} onClick={() => void handleMember(uid, true)}>승인</button><button type="button" disabled={busyKey !== null} onClick={() => void handleMember(uid, false)}>반려</button></div>
       </article>)}
       {memberEntries.length > visibleMembers && <button className="admin-pending-more" type="button" onClick={() => setVisibleMembers(count => count + 20)}>신청 더 보기 ({memberEntries.length - visibleMembers}건 남음)</button>}
+    </section>
+    <section className="modern-panel" aria-labelledby="pending-projects-title">
+      <h2 id="pending-projects-title">새 프로젝트 신청 <span className="admin-pending-count">{pending.projects}건</span></h2>
+      {Object.entries(projectApplications).length === 0 ? <p className="admin-pending-empty">대기 중인 신청이 없습니다.</p> : Object.entries(projectApplications).sort(([,a],[,b]) => a.createdAt - b.createdAt).map(([uid, application]) => <article className="admin-pending-item" key={uid}>
+        <div><strong>{application.title}</strong><p>{users[uid]?.realName || application.applicantName} · {new Date(application.createdAt).toLocaleDateString("ko-KR")}</p><p className="admin-pending-review-body">{application.description}</p></div>
+        <div className="admin-pending-actions"><button type="button" disabled={busyKey !== null} onClick={() => void handleProject(uid, true)}>승인</button><button type="button" disabled={busyKey !== null} onClick={() => void handleProject(uid, false)}>반려</button></div>
+      </article>)}
     </section>
     <section className="modern-panel" aria-labelledby="pending-reviews-title">
       <h2 id="pending-reviews-title">리뷰 승인 <span className="admin-pending-count">{pending.reviews}건</span></h2>

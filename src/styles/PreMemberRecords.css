@@ -1,0 +1,95 @@
+.pre-members__add-row{display:flex;align-items:center;gap:12px;border-top:1px solid #3d3d3d}
+.pre-members__add-slot{flex:0 0 18px;width:18px}
+.pre-members__add{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:1;min-width:0;min-height:68px;padding:16px 0;border:0;background:transparent;color:#fff;text-align:left;cursor:pointer}
+.pre-members__add-identity{display:flex;align-items:center;gap:12px;min-width:0}
+.pre-members__add-icon{display:grid;place-items:center;flex:0 0 34px;box-sizing:border-box;width:34px;height:34px;border:1px solid #777;border-radius:5px;color:#ddd;font-size:23px;line-height:1}
+.pre-members__add-identity strong,.pre-members__add-identity small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pre-members__add-identity strong{color:#e8bc5b}
+.pre-members__add-identity small{color:#aaa;font-size:13px}
+.pre-members__add:hover strong{text-decoration:underline}
+.pre-members__add:disabled,.pre-members__actions button:disabled,.pre-members__link-button:disabled,.pre-members__create-actions button:disabled{opacity:.5;cursor:default}
+.pre-members__create{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px 30px;padding:16px;border:1px solid #555;border-radius:6px;background:#191919}
+.pre-members__create label,.pre-members__fields label,.pre-members__link>label{display:grid;gap:6px;min-width:0;color:#bbb;font-size:12px}
+.pre-members__create input,.pre-members__create select,.pre-members__fields input,.pre-members__fields select,.pre-members__link input{box-sizing:border-box;width:100%;min-width:0;padding:10px 12px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:14px}
+.pre-members__create-assignments{display:grid;grid-template-columns:1fr;grid-column:1/-1;gap:12px}
+.pre-members__create-assignments details{min-width:0;padding:12px;border:1px solid #444;border-radius:5px}
+.pre-members__create-assignments summary{cursor:pointer;font-size:13px;font-weight:600}
+.pre-members__create-assignments input[type="search"]{margin:12px 0 8px}
+.pre-members__create-options{display:grid;gap:6px;max-height:220px;overflow-y:auto}
+.pre-members__create-options label{display:flex;align-items:flex-start;gap:8px;padding:8px;border:1px solid #333;border-radius:4px;color:#ddd;font-size:12px}
+.pre-members__create-options input[type="checkbox"]{flex:0 0 16px;width:16px;height:16px;margin:0;accent-color:#fff}
+.pre-members__create-options label span{display:grid;gap:4px;min-width:0}
+.pre-members__create-options label small,.pre-members__create-options p{margin:0;color:#999;font-size:11px}
+.pre-members__create-actions{display:flex;align-items:end;gap:8px;grid-column:1/-1}
+.pre-members__create-actions button,.pre-members__link-button,.pre-members__delete{padding:9px 12px;border:1px solid #555;border-radius:5px;background:#333;color:#fff;white-space:nowrap;cursor:pointer}
+.pre-members__create-actions button[type="submit"],.pre-members__link-button{border-color:#f5f5f5;background:#f5f5f5;color:#111;font-weight:700}
+.pre-members__message{margin:0 0 12px;color:#ddd;font-size:13px}
+.pre-members__row{border-top:1px solid #3d3d3d}
+.pre-members__top{display:flex;align-items:center;gap:12px}
+.pre-members__summary{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(140px,auto) 22px;align-items:center;gap:16px;flex:1;min-width:0;padding:16px 0;border:0;background:transparent;color:#fff;text-align:left;cursor:pointer}
+.pre-members__summary:hover .pre-members__identity strong{text-decoration:underline}
+.pre-members__identity{display:flex;align-items:center;min-width:0;gap:12px}
+.pre-members__identity strong,.pre-members__identity small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pre-members__identity small,.pre-members__meta{color:#aaa;font-size:13px}
+.pre-members__meta{text-align:right}
+.pre-members__meta small{margin-right:8px}
+.pre-members__meta .admin-member-card__score-value{font-size:16px}
+.pre-members__badges{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.pre-members__chevron{color:#aaa;font-size:23px;text-align:right;line-height:1}
+.pre-members__detail{box-sizing:border-box;width:100%;max-width:720px;margin:0 auto 16px;padding:0;border:0;background:transparent}
+.pre-members__fields{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.pre-members__fields>:nth-child(-n+2){grid-column:span 3}
+.pre-members__fields>:nth-child(n+3){grid-column:span 2}
+.pre-members__create-years{grid-column:1/-1}
+.pre-members__activity-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0 14px;color:#aaa;font-size:12px}
+.activity-years-editor{display:grid;gap:8px;margin:14px 0;color:#bbb;font-size:12px}
+.activity-years-editor__content{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-width:0}
+.activity-years-editor__list{display:flex;flex:1;min-width:0;flex-direction:row-reverse;flex-wrap:wrap;gap:6px}
+.activity-years-editor__list>span{display:inline-flex;align-items:center;gap:7px;padding:5px 7px;border:1px solid #65522e;border-radius:4px;color:#e8bc5b}
+.activity-years-editor__list button{padding:0;border:0;background:none;color:inherit;font-size:17px;line-height:1;cursor:pointer}
+.activity-years-editor__list small{color:#888}
+.activity-years-editor__add{display:flex;flex:none;gap:7px}
+.activity-years-editor__add input{box-sizing:border-box;width:120px;padding:8px 10px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:13px}
+.activity-years-editor__add button{padding:8px 12px;border:1px solid #555;border-radius:5px;background:#292929;color:#fff;cursor:pointer}
+.activity-years-editor__add button:disabled{opacity:.5;cursor:default}
+.pre-members__search{box-sizing:border-box;width:100%;margin:10px 0;padding:10px 12px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:14px}
+.pre-members__project-toolbar{display:flex;align-items:center;gap:10px;margin:10px 0}
+.pre-members__project-toolbar .pre-members__search{flex:1;min-width:0;margin:0}
+.pre-members__project-toolbar .admin-member-card__categories{flex:none;flex-wrap:nowrap;margin:0}
+.pre-members__event-toolbar{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 12px}
+.pre-members__event-toolbar .admin-member-card__semester-filter{flex:0 1 220px;min-width:0;margin:0}
+.pre-members__event-toolbar .admin-member-card__categories{flex:none;flex-wrap:nowrap;margin:0}
+.pre-members__link{display:grid;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid #333}
+.pre-members__candidates{display:grid;gap:6px;max-height:230px;overflow-y:auto}
+.pre-members__candidates button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:9px 11px;border:1px solid #444;border-radius:5px;background:#202020;color:#fff;text-align:left;cursor:pointer}
+.pre-members__candidates button.is-selected{border-color:#eee;background:#333}
+.pre-members__candidates button>span:first-child{display:grid;gap:4px;min-width:0}
+.pre-members__candidates button small{color:#aaa;font-size:12px}
+.pre-members__candidates p{margin:0;color:#aaa;font-size:13px}
+.pre-members__actions{display:flex;align-items:center;gap:10px;margin-top:18px}
+.pre-members__actions .pre-members__delete{margin-left:auto}
+.pre-members__delete{border-color:#a83232;background:#b52c2c;color:#fff}
+.account-record-link{box-sizing:border-box;width:100%;max-width:720px;margin:18px auto 0;padding:18px;border:1px solid #444;border-radius:7px}
+.account-record-link legend{padding:0 6px;color:#ddd}
+.account-record-link--connected{display:grid;gap:6px}
+.account-record-link--connected strong{color:#e8bc5b;font-size:16px}
+.account-record-link--connected span{color:#aaa;font-size:13px}
+.account-record-link__connected-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.account-record-link__connected-row>div{display:flex;align-items:center;flex-wrap:wrap;column-gap:12px;row-gap:4px;min-width:0}
+.account-record-link__connected-row>div strong,.account-record-link__connected-row>div span{line-height:1.4}
+.account-record-link__connected-row button{flex:none;padding:8px 13px;border:1px solid #666;border-radius:5px;background:#111;color:#fff;cursor:pointer}
+.account-record-link__connected-row button:hover{border-color:#e8bc5b;color:#e8bc5b}
+.account-record-link__current{margin:0 0 12px;color:#e8bc5b;font-size:13px}
+.account-record-link__actions{display:flex;align-items:center;gap:8px}
+.account-record-link__actions>button:last-child:not(:first-child){margin-top:12px;padding:9px 12px;border:1px solid #555;border-radius:5px;background:#111;color:#ddd;cursor:pointer}
+.account-record-link>label{display:grid;gap:6px;color:#bbb;font-size:12px}
+.account-record-link input{box-sizing:border-box;width:100%;padding:10px 12px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:14px}
+.account-record-link__candidates{display:grid;gap:6px;max-height:220px;margin:12px 0;overflow-y:auto}
+.account-record-link__candidates button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:9px 11px;border:1px solid #444;border-radius:5px;background:#111;color:#fff;text-align:left;cursor:pointer}
+.account-record-link__candidates button.is-selected{border-color:#e8bc5b}
+.account-record-link__candidates button>span:first-child{display:grid;gap:4px}
+.account-record-link__candidates small,.account-record-link__candidates p{color:#aaa}
+.account-record-link__submit{margin-top:12px;padding:9px 12px;border:1px solid #eee;border-radius:5px;background:#eee;color:#111;font-weight:700;cursor:pointer}
+.account-record-link__submit:disabled{opacity:.5;cursor:default}
+@media(max-width:760px){.pre-members__create{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.pre-members__create,.pre-members__fields,.pre-members__create-assignments{grid-template-columns:1fr}.pre-members__fields>:nth-child(n){grid-column:1/-1}.pre-members__summary{grid-template-columns:minmax(0,1fr) 22px;gap:10px}.pre-members__badges{grid-column:1;grid-row:2}.pre-members__meta{grid-column:1;grid-row:3}.pre-members__chevron{grid-column:2;grid-row:1}.activity-years-editor__content{flex-wrap:wrap}.activity-years-editor__list{flex-basis:100%}.pre-members__project-toolbar,.pre-members__event-toolbar{flex-wrap:wrap}.pre-members__project-toolbar .pre-members__search{flex-basis:100%}}

@@ -26,7 +26,7 @@ const Login = () => {
     try {
       await setPersistence(auth, autoLogin ? browserLocalPersistence : browserSessionPersistence);
       const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
-      navigate(isVerifiedAccount(credential.user) ? "/home-preview" : "/verify-email", { replace: true });
+      navigate(isVerifiedAccount(credential.user) ? "/" : "/verify-email", { replace: true });
     } catch (caughtError) {
       if (caughtError instanceof FirebaseError && caughtError.code === "auth/too-many-requests") {
         setError("로그인 시도가 많습니다. 잠시 후 다시 시도해 주세요.");
@@ -68,7 +68,7 @@ const Login = () => {
         </section>
 
         <section className="login-panel" aria-labelledby="login-title">
-          <Link className="login-panel__back" to="/home-preview">
+          <Link className="login-panel__back" to="/">
             <FiArrowLeft aria-hidden="true" /> 홈으로 돌아가기
           </Link>
           <div className="login-panel__content">

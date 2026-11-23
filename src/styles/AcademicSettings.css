@@ -1,0 +1,13 @@
+.academic-settings__years{margin-top:20px}
+.academic-settings h3{margin:0 0 10px;font-size:15px}
+.academic-settings__chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.academic-settings__chips>span{display:inline-flex;align-items:center;gap:9px;padding:6px 9px;border:1px solid #6f5829;border-radius:5px;color:#e8bc5b}
+.academic-settings__chips small{color:#aaa;font-size:11px}
+.academic-settings__chips button{padding:0;border:0;background:none;color:inherit;font-size:17px;line-height:1;cursor:pointer}
+.academic-settings__years form,.academic-settings__current{display:flex;align-items:end;flex-wrap:wrap;gap:10px}
+.academic-settings__current{margin-top:22px}
+.academic-settings__current label{display:grid;gap:6px;min-width:150px;color:#bbb;font-size:12px}
+.academic-settings input,.academic-settings select{box-sizing:border-box;min-height:40px;padding:8px 11px;border:1px solid #555;border-radius:5px;background:#111;color:#fff;font-size:14px}
+.academic-settings__years input{width:130px}
+.academic-settings form button{min-height:40px;padding:8px 13px;border:1px solid #eee;border-radius:5px;background:#eee;color:#111;font-weight:700;cursor:pointer}
+.academic-settings button:disabled{opacity:.5;cursor:default}

@@ -27,6 +27,23 @@
 .profile-page__score--gold { color: #e8bc5b; text-shadow: 0 0 8px #c8913c88; }
 .profile-page__editor { padding: 30px 34px 34px; }
 .profile-page__editor h2 { margin: 0 0 25px; font-size: 21px; }
+.profile-photo-editor{display:grid;justify-items:start;gap:13px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #424242}
+.profile-photo-editor__current{display:grid;place-items:center;width:74px;height:74px;overflow:hidden;border:1px solid #666;border-radius:50%;background:#303030;font-size:32px}
+.profile-photo-editor__current img{width:100%;height:100%;object-fit:cover}
+.profile-photo-editor__choose{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border:1px solid #777;border-radius:6px;background:#171717;color:#fff;cursor:pointer}
+.profile-photo-editor__choose input{position:absolute;width:1px;height:1px;opacity:0}
+.profile-photo-editor__crop{display:grid;gap:12px;max-width:100%}
+.profile-photo-editor__crop p,.profile-photo-editor>p{margin:0;color:#bbb;font-size:12px}
+.profile-photo-editor__preview{position:relative;width:min(280px,100%);aspect-ratio:1;overflow:hidden;border:1px solid #666;border-radius:6px;background:#111}
+.profile-photo-editor__preview canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.profile-photo-editor__preview canvas:active{cursor:grabbing}
+.profile-photo-editor__preview>span{position:absolute;inset:0;border:2px solid #ffca6b;border-radius:50%;box-shadow:0 0 0 50px #0007;pointer-events:none}
+.profile-photo-editor__crop>label{display:flex;align-items:center;gap:14px;margin:0;color:#ddd;font-size:13px}
+.profile-photo-editor__crop input[type=range]{width:220px;max-width:70vw;accent-color:#ffc45a}
+.profile-photo-editor__actions{display:flex;gap:9px}
+.profile-photo-editor__actions button{padding:9px 13px;border:1px solid #777;border-radius:5px;background:#252525;color:#fff;cursor:pointer}
+.profile-photo-editor__actions button:last-child{border-color:#ffc45a;background:#ffc45a;color:#111;font-weight:700}
+.profile-photo-editor__actions button:disabled{opacity:.6;cursor:default}
 .profile-page__editor form { display: flex; flex-direction: column; }
 .profile-page__editor label { margin: 0 0 9px; font-size: 13px; font-weight: 600; }
 .profile-page__editor input { height: 46px; padding: 0 14px; box-sizing: border-box; border: 1px solid #555; border-radius: 6px; outline: 0; background: #171717; color: #fff; font-size: 14px; }

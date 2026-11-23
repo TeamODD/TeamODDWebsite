@@ -10,6 +10,11 @@ const eventBannerImages = readdirSync(new URL("./public/images/event-banners/", 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      "/api": { target: "https://teamodd.pages.dev", changeOrigin: true },
+    },
+  },
   define: { __EVENT_BANNER_IMAGES__: JSON.stringify(eventBannerImages) },
   base: "/",
   build: {

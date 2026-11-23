@@ -4,7 +4,7 @@
       ".indexOn": ["id"],
       ".read": true,
       "$gameKey": {
-        ".write": "auth != null && (auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || (auth.token.email_verified === true && root.child('roles').child(auth.uid).val() === 'member' && root.child('gameMembers').child($gameKey).child(auth.uid).val() === true && data.exists() && newData.exists() && newData.child('id').val() === data.child('id').val() && newData.child('reviewPolicy').val() === data.child('reviewPolicy').val() && newData.child('priority').val() === data.child('priority').val()))"
+        ".write": "auth != null && (auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || (auth.token.email_verified === true && root.child('roles').child(auth.uid).val() === 'member' && root.child('gameMembers').child($gameKey).child(auth.uid).val() === true && data.exists() && newData.exists() && newData.child('id').val() === data.child('id').val() && (!newData.child('reviewPolicy').exists() || newData.child('reviewPolicy').val() === 'off' || newData.child('reviewPolicy').val() === 'everyone' || newData.child('reviewPolicy').val() === 'account' || newData.child('reviewPolicy').val() === 'member') && newData.child('priority').val() === data.child('priority').val()))"
       }
     },
     "join": {
@@ -14,19 +14,21 @@
     },
     "loginIds": {
       "$loginId": {
-        ".read": "auth != null",
-        ".write": "auth != null && ((!data.exists() && newData.isString() && newData.val() === auth.uid) || (data.val() === auth.uid && !newData.exists()))"
+        ".read": "auth != null && auth.token.email != null",
+        ".write": "auth != null && auth.token.email != null && ((!data.exists() && newData.isString() && newData.val() === auth.uid) || (data.val() === auth.uid && !newData.exists()))"
       }
     },
     "users": {
       ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
-        ".write": "auth != null && auth.uid === $uid && (!data.exists() || !newData.exists() || (newData.child('loginId').val() === data.child('loginId').val() && newData.child('registrationIntent').val() === data.child('registrationIntent').val() && newData.child('createdAt').val() === data.child('createdAt').val()))",
-        ".validate": "auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || newData.hasChildren(['loginId', 'nickname', 'realName', 'registrationIntent', 'createdAt'])",
+        ".read": "auth != null && auth.uid === $uid && auth.token.email != null",
+        ".write": "auth != null && auth.uid === $uid && auth.token.email != null && (!data.exists() || !newData.exists() || (newData.child('loginId').val() === data.child('loginId').val() && newData.child('registrationIntent').val() === data.child('registrationIntent').val() && newData.child('createdAt').val() === data.child('createdAt').val() && (!data.child('studentNumber').exists() || newData.child('studentNumber').val() === data.child('studentNumber').val())))",
+        ".validate": "auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || (newData.hasChildren(['loginId', 'nickname', 'realName', 'registrationIntent', 'createdAt']) && (newData.child('registrationIntent').val() !== 'member' || newData.child('studentNumber').exists() || data.exists()))",
         "loginId": { ".validate": "newData.isString() && newData.val().matches(/^[a-z0-9_-]{4,20}$/)" },
         "nickname": { ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 20" },
         "realName": { ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 50" },
+        "photoURL": { ".validate": "newData.isString() && (newData.val().beginsWith('https://firebasestorage.googleapis.com/') || newData.val().beginsWith('https://raw.githubusercontent.com/TeamODD/TeamODDWebsite/uploads/public/uploads/avatars/' + $uid + '/avatar.jpg?v=')) && newData.val().length <= 2000" },
+        "studentNumber": { ".validate": "newData.isString() && newData.val().matches(/^[0-9]{6,12}$/)" },
         "registrationIntent": { ".validate": "newData.val() === 'general' || newData.val() === 'member'" },
         "createdAt": { ".validate": "newData.isNumber() && newData.val() >= 0" },
         "$other": { ".validate": false }
@@ -38,7 +40,28 @@
         ".read": "auth != null && (auth.uid === $uid || auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1')",
         ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
         "part": { ".validate": "newData.val() === '기획' || newData.val() === '아트' || newData.val() === '프로그래밍' || newData.val() === '없음'" },
+        "status": { ".validate": "newData.val() === 'active' || newData.val() === 'alumniEnrolled' || newData.val() === 'alumniGraduated' || newData.val() === 'resting' || newData.val() === 'withdrawn'" },
+        "activityYears": { "$year": { ".validate": "$year.matches(/^[0-9]{4}$/) && newData.val() === true" } },
         "activityScore": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 === 0" }
+      }
+    },
+    "memberRecords": {
+      ".read": "auth != null && (auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || (auth.token.email_verified === true && root.child('roles').child(auth.uid).val() === 'member'))",
+      "$recordId": {
+        ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        ".validate": "newData.hasChildren(['name', 'part', 'createdAt'])",
+        "name": { ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 50" },
+        "linkedUid": { ".validate": "newData.isString() && root.child('users').child(newData.val()).exists()" },
+        "studentNumber": { ".validate": "newData.isString() && newData.val().matches(/^[0-9]{6,12}$/)" },
+        "part": { ".validate": "newData.val() === '기획' || newData.val() === '아트' || newData.val() === '프로그래밍' || newData.val() === '없음'" },
+        "status": { ".validate": "newData.val() === 'active' || newData.val() === 'alumniEnrolled' || newData.val() === 'alumniGraduated' || newData.val() === 'resting' || newData.val() === 'withdrawn'" },
+        "createdAt": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+        "activityYears": { "$year": { ".validate": "$year.matches(/^[0-9]{4}$/) && newData.val() === true" } },
+        "projectKeys": { "$gameKey": { ".validate": "newData.val() === true && root.child('games').child($gameKey).exists()" } },
+        "projectParts": { "$gameKey": { ".validate": "newData.val() === '기획' || newData.val() === '아트' || newData.val() === '프로그래밍' || newData.val() === '없음'" } },
+        "eventKeys": { "$eventId": { ".validate": "newData.val() === true && root.child('events').child($eventId).exists()" } },
+        "eventParts": { "$eventId": { ".validate": "newData.val() === '기획' || newData.val() === '아트' || newData.val() === '프로그래밍' || newData.val() === '없음'" } },
+        "$other": { ".validate": false }
       }
     },
     "roles": {
@@ -63,6 +86,16 @@
           ".read": "auth != null && auth.uid === $uid",
           ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
           ".validate": "newData.val() === true"
+        }
+      }
+    },
+    "gameMemberParts": {
+      ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+      "$gameKey": {
+        "$uid": {
+          ".read": "auth != null && (auth.uid === $uid || auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1')",
+          ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+          ".validate": "newData.val() === '기획' || newData.val() === '아트' || newData.val() === '프로그래밍' || newData.val() === '없음'"
         }
       }
     },
@@ -106,18 +139,54 @@
       ".read": true,
       "$eventId": {
         ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
-        ".validate": "newData.hasChildren(['title', 'description', 'date']) && newData.child('title').isString() && newData.child('title').val().length <= 100 && newData.child('description').isString() && newData.child('description').val().length <= 2000 && newData.child('date').isString() && newData.child('date').val().length <= 30",
+        ".validate": "newData.hasChildren(['title', 'description', 'date']) && newData.child('title').isString() && newData.child('title').val().length <= 100 && newData.child('description').isString() && newData.child('description').val().length <= 2000 && newData.child('date').isString() && newData.child('date').val().length <= 30 && (!newData.child('annualSlot').exists() || newData.child('reportYear').exists())",
         "endDate": { ".validate": "newData.isString() && newData.val().length <= 30" },
         "semester": { ".validate": "newData.isString() && newData.val().matches(/^[0-9]{2}-[12]$/)" },
         "activityPoints": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100 && newData.val() % 1 === 0" },
+        "category": { ".validate": "newData.val() === 'assembly' || newData.val() === 'social' || newData.val() === 'project' || newData.val() === 'external' || newData.val() === 'mt' || newData.val() === 'other'" },
+        "reportYear": { ".validate": "newData.isString() && newData.val().matches(/^[0-9]{4}$/)" },
+        "annualSlot": { ".validate": "newData.val() === 'spring-opening' || newData.val() === 'spring-led-study' || newData.val() === 'spring-other-study' || newData.val() === 'oddity-workshop' || newData.val() === 'spring-external' || newData.val() === 'spring-exchange' || newData.val() === 'spring-closing' || newData.val() === 'summer-project' || newData.val() === 'fall-opening' || newData.val() === 'fall-led-study' || newData.val() === 'fall-other-study' || newData.val() === 'short-project' || newData.val() === 'fall-external' || newData.val() === 'fall-exchange' || newData.val() === 'fall-closing' || newData.val() === 'winter-project' || newData.val() === 'ddd-game-jam' || newData.val() === 'opening' || newData.val() === 'led-study' || newData.val() === 'other-study' || newData.val() === 'closing' || newData.val() === 'external' || newData.val() === 'exchange' || newData.val() === 'member-led-study'" },
         "sortOrder": { ".validate": "newData.isNumber() && newData.val() % 1 === 0" }
       }
     },
     "siteSettings": {
+      "currentYear": {
+        ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        ".validate": "newData.isString() && newData.val().matches(/^[0-9]{4}$/)"
+      },
+      "visibleYears": {
+        ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        "$year": { ".validate": "$year.matches(/^[0-9]{4}$/) && newData.val() === true" }
+      },
       "currentSemester": {
         ".read": true,
         ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
         ".validate": "newData.isString() && newData.val().matches(/^[0-9]{2}-[12]$/)"
+      },
+      "attendanceTags": {
+        ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+        ".validate": "newData.hasChildren(['none', 'low', 'medium', 'high', 'mediumFrom', 'highFrom', 'categoryFrom', 'categoryNames']) && newData.child('mediumFrom').val() < newData.child('highFrom').val()",
+        "none": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+        "low": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+        "medium": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+        "high": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+        "mediumFrom": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 100 && newData.val() % 1 === 0" },
+        "highFrom": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 100 && newData.val() % 1 === 0" },
+        "categoryFrom": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 100 && newData.val() % 1 === 0" },
+        "categoryNames": {
+          ".validate": "newData.hasChildren(['assembly', 'social', 'project', 'external', 'mt', 'other'])",
+          "assembly": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+          "social": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+          "project": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+          "external": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+          "mt": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+          "other": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30" },
+          "$other": { ".validate": false }
+        },
+        "$other": { ".validate": false }
       }
     },
     "eventParticipation": {
@@ -130,6 +199,16 @@
         }
       }
     },
+    "eventParticipationParts": {
+      ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1')",
+        "$eventId": {
+          ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+          ".validate": "newData.val() === '기획' || newData.val() === '아트' || newData.val() === '프로그래밍' || newData.val() === '없음'"
+        }
+      }
+    },
     "eventSignupLinks": {
       ".read": "auth != null && (auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || (auth.token.email_verified === true && root.child('roles').child(auth.uid).val() === 'member'))",
       "$eventId": {
@@ -137,13 +216,28 @@
         ".validate": "newData.isString() && newData.val().beginsWith('https://') && newData.val().length <= 1000"
       }
     },
+    "publicAvatars": {
+      ".read": true,
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid && auth.token.email_verified === true",
+        ".validate": "newData.isString() && (newData.val().beginsWith('https://firebasestorage.googleapis.com/') || newData.val().beginsWith('https://raw.githubusercontent.com/TeamODD/TeamODDWebsite/uploads/public/uploads/avatars/' + $uid + '/avatar.jpg?v=')) && newData.val().length <= 2000"
+      }
+    },
+    "projectApplications": {
+      ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && (auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || (auth.uid === $uid && auth.token.email_verified === true && root.child('roles').child($uid).val() === 'member' && !data.exists() && newData.exists()))",
+        ".validate": "newData.hasChildren(['title', 'description', 'applicantName', 'createdAt']) && newData.child('title').isString() && newData.child('title').val().length >= 2 && newData.child('title').val().length <= 100 && newData.child('description').isString() && newData.child('description').val().length >= 10 && newData.child('description').val().length <= 1000 && newData.child('applicantName').isString() && newData.child('applicantName').val().length >= 1 && newData.child('applicantName').val().length <= 100 && newData.child('createdAt').isNumber()"
+      }
+    },
     "reviewSubmissions": {
       ".read": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
       "$gameKey": {
         "$uid": {
           ".read": "auth != null && (auth.uid === $uid || auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1')",
-          ".write": "auth != null && (auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1' || (auth.uid === $uid && !data.exists() && newData.exists() && root.child('games').child($gameKey).exists() && ((root.child('games').child($gameKey).child('reviewPolicy').val() === 'everyone') || (auth.token.email_verified === true && root.child('games').child($gameKey).child('reviewPolicy').val() === 'account') || (auth.token.email_verified === true && root.child('games').child($gameKey).child('reviewPolicy').val() === 'member' && root.child('roles').child(auth.uid).val() === 'member'))))",
-          ".validate": "newData.hasChildren(['displayName', 'body', 'createdAt']) && newData.child('displayName').isString() && newData.child('displayName').val().length >= 2 && newData.child('displayName').val().length <= 30 && newData.child('body').isString() && newData.child('body').val().length >= 5 && newData.child('body').val().length <= 1000 && newData.child('createdAt').isNumber()"
+          ".write": "auth != null && auth.uid === 'mh9sU0TjlbNNmlOeWlXJB59OUSh1'",
+          ".validate": "newData.hasChildren(['displayName', 'body', 'createdAt']) && newData.child('displayName').isString() && newData.child('displayName').val().length >= 2 && newData.child('displayName').val().length <= 30 && ((root.child('users').child($uid).child('nickname').isString() && newData.child('displayName').val() === root.child('users').child($uid).child('nickname').val()) || (!root.child('users').child($uid).child('nickname').isString() && newData.child('displayName').val() === '익명')) && newData.child('body').isString() && newData.child('body').val().length >= 5 && newData.child('body').val().length <= 1000 && newData.child('createdAt').isNumber()"
         }
       }
     },

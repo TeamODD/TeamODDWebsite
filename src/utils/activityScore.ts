@@ -5,6 +5,9 @@ export type ScoredEvent = {
   endDate?: string;
   semester?: string;
   activityPoints?: number;
+  category?: string;
+  reportYear?: string;
+  annualSlot?: string;
 };
 
 export type EventParticipation = Record<string, Record<string, boolean>>;

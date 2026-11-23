@@ -23,7 +23,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (user.uid !== ADMIN_UID) {
-    return <Navigate to="/home-preview" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;

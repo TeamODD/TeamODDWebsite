@@ -6,6 +6,7 @@ import { Link, Navigate, useLocation } from "react-router-dom";
 import { ADMIN_UID } from "../auth/admin";
 import { isVerifiedAccount } from "../auth/isVerifiedAccount";
 import Loading from "../components/Loading";
+import ProfilePhotoEditor from "../components/ProfilePhotoEditor";
 import { auth, database } from "../firebase";
 import "../styles/Profile.css";
 import "../styles/ModernPages.css";
@@ -26,6 +27,7 @@ const Profile = () => {
     return () => cancelAnimationFrame(frame);
   }, [location.hash]);
   const [nickname, setNickname] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
   const [realName, setRealName] = useState("");
   const [part, setPart] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +39,7 @@ const Profile = () => {
     if (!user?.uid) return;
     let cancelled = false;
     setIsLoading(true);
+    setPhotoURL(user.photoURL || "");
 
     get(ref(database, `users/${user.uid}`))
       .then((snapshot) => {
@@ -62,7 +65,7 @@ const Profile = () => {
       .catch(() => {});
 
     return () => { cancelled = true; };
-  }, [user?.uid, user?.displayName]);
+  }, [user?.uid, user?.displayName, user?.photoURL]);
 
   if (authLoading) return <Loading />;
   if (!user) return <Navigate to="/login" replace />;
@@ -111,7 +114,7 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <div className="profile-page__container">
-        <Link className="profile-page__back" to="/home-preview"><FiArrowLeft aria-hidden="true" /> 홈으로 돌아가기</Link>
+        <Link className="profile-page__back" to="/"><FiArrowLeft aria-hidden="true" /> 홈으로 돌아가기</Link>
         <header className="profile-page__heading">
           <span>MY PROFILE</span>
           <h1>프로필 보기</h1>
@@ -121,7 +124,7 @@ const Profile = () => {
         <div className="profile-page__layout">
           <aside className="profile-page__summary" aria-label="현재 프로필">
             <div className="profile-page__avatar">
-              {user.photoURL ? <img src={user.photoURL} alt="" /> : <FiUser aria-hidden="true" />}
+              {photoURL ? <img src={photoURL} alt="" /> : <FiUser aria-hidden="true" />}
             </div>
             <strong className="profile-page__name">{nickname.trim() || user.displayName || "Team ODD 회원"}</strong>
             <span className={role === "general" ? "profile-page__part" : `profile-page__part member-part-badge member-part-badge--${memberPartTone(normalizedPart)}`}>{role === "general" ? "일반 계정" : normalizedPart}</span>
@@ -132,6 +135,8 @@ const Profile = () => {
           </aside>
 
           <section className="profile-page__editor" aria-labelledby="profile-edit-title">
+            <h2>프로필 사진</h2>
+            <ProfilePhotoEditor user={user} onSaved={setPhotoURL} />
             <h2 id="profile-edit-title">기본 정보</h2>
             {isLoading ? <p className="profile-page__loading">프로필을 불러오는 중...</p> : (
               <form onSubmit={handleSave}>

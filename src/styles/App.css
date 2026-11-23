@@ -22,6 +22,38 @@ body {
 }
 
 @font-face {
+  font-family: "SBAggro";
+  src: url("/fonts/SBAggro-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SBAggro";
+  src: url("/fonts/SBAggro-Light.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SBAggro";
+  src: url("/fonts/SBAggro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SBAggro";
+  src: url("/fonts/SBAggro-Medium.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Pretendard";
   font-weight: 400;
   font-display: optional;
@@ -85,7 +117,7 @@ body {
 }
 
 * {
-  font-family: "Pretendard", sans-serif;
+  font-family: "SBAggro", "Pretendard", sans-serif;
   /* overflow-x: hidden;
   overflow-y: auto; */
   scrollbar-width: none;

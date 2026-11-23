@@ -5,7 +5,7 @@ import AccountMenu from "./AccountMenu";
 import { useSiteLanguage } from "../i18n/siteLanguage";
 
 const previewNavItems = [
-  { label: "홈", href: "/home-preview" },
+  { label: "홈", href: "/" },
   { label: "프로젝트", href: "/projects" },
   { label: "행사정보", href: "/events" },
   { label: "운영안내", href: "/operations" },

@@ -2,6 +2,8 @@ import { Game } from "../types/game";
 import BlurImage from "./BlurImage";
 import "../styles/GameCard.css";
 import { useNavigate } from "react-router-dom";
+import { projectAssetUrl } from "../utils/projectAssetUrl";
+import { singleLineDescription } from "../utils/projectContent";
 
 interface GameCardProps {
   game: Game;
@@ -16,7 +18,7 @@ interface GameCardProps {
  * @param {string} props.game.imageUrl - 게임 이미지 URL
  * @param {string} props.game.title - 게임 제목
  * @param {string} props.game.placeholder - 이미지 로딩 전 표시할 placeholder
- * @param {string} props.game.description - 게임 설명 (줄바꿈은 "//n"으로 구분)
+ * @param {string} props.game.description - 한 줄로 표시할 게임 설명
  * @param {string} props.game.developer - 게임 개발자
  *
  * @returns {JSX.Element} 게임 정보를 표시하는 카드 UI
@@ -32,7 +34,7 @@ const GameCard = ({ game }: GameCardProps) => {
   return (
     <div className="game-card" onClick={handleClick}>
       <BlurImage
-        src={`${import.meta.env.BASE_URL}${game.imageUrl}`}
+        src={projectAssetUrl(game.imageUrl)}
         alt={game.title}
         className="game-image"
         placeholder={game.placeholder}
@@ -49,12 +51,7 @@ const GameCard = ({ game }: GameCardProps) => {
         <p className="game-description" style={{
           fontSize: game.description.length > 25 ? "0.85rem" : "1rem",
         }}>
-          {game.description.split("/n").map((it, idx) => (
-            <span key={idx}>
-              {it}
-              <br />
-            </span>
-          ))}
+          {singleLineDescription(game.description)}
         </p>
         <div className="game-details" style={{ fontSize: game.developer.length > 25 ? "0.75rem" : "0.9rem" }}>
           <span>{game.developer}</span>

@@ -22,7 +22,7 @@ const VerifyEmail = () => {
   if (loading) return <Loading />;
   if (!user) return <Navigate to="/login" replace />;
   if (user.emailVerified) {
-    return <Navigate to="/home-preview" replace />;
+    return <Navigate to="/" replace />;
   }
 
   const handleCheck = async () => {
@@ -34,7 +34,7 @@ const VerifyEmail = () => {
       await reload(user);
       if (user.emailVerified) {
         await user.getIdToken(true);
-        navigate("/home-preview", { replace: true });
+        navigate("/", { replace: true });
       } else {
         setIsError(true);
         setMessage("아직 이메일 인증이 완료되지 않았습니다. 메일의 링크를 확인해 주세요.");
@@ -83,7 +83,7 @@ const VerifyEmail = () => {
 
       <div className="login-shell verify-shell">
         <section className="login-panel" aria-labelledby="verify-title">
-          <Link className="login-panel__back" to="/home-preview">
+          <Link className="login-panel__back" to="/">
             <FiArrowLeft aria-hidden="true" /> 홈으로 돌아가기
           </Link>
           <div className="verify-content">

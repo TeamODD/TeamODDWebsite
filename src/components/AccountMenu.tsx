@@ -19,6 +19,7 @@ const AccountMenu = () => {
   const [isSigningOut, setIsSigningOut] = useState(false);
   const [error, setError] = useState("");
   const [profileNickname, setProfileNickname] = useState("");
+  const [profilePhotoURL, setProfilePhotoURL] = useState("");
   const [memberProfile, setMemberProfile] = useState({ part: "" });
   const { score: activityScore, currentSemester } = useActivityScore(user?.uid);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -58,6 +59,12 @@ const AccountMenu = () => {
   }, [user?.uid]);
 
   useEffect(() => {
+    setProfilePhotoURL("");
+    if (!user?.uid) return;
+    return onValue(ref(database, `users/${user.uid}/photoURL`), snapshot => setProfilePhotoURL(typeof snapshot.val() === "string" ? snapshot.val() : ""), () => setProfilePhotoURL(""));
+  }, [user?.uid]);
+
+  useEffect(() => {
     setMemberProfile({ part: "" });
     if (!user?.uid) return;
     return onValue(
@@ -79,7 +86,7 @@ const AccountMenu = () => {
     try {
       await signOut(auth);
       setIsOpen(false);
-      navigate("/home-preview");
+      navigate("/");
     } catch {
       setError("로그아웃하지 못했습니다. 다시 시도해 주세요.");
     } finally {
@@ -122,7 +129,7 @@ const AccountMenu = () => {
         onClick={() => setIsOpen((open) => !open)}
       >
         <span className="account-menu__avatar">
-          {user.photoURL ? <img src={user.photoURL} alt="" /> : <FiUser aria-hidden="true" />}
+          {profilePhotoURL || user.photoURL ? <img src={profilePhotoURL || user.photoURL || ""} alt="" /> : <FiUser aria-hidden="true" />}
         </span>
         <span className="account-menu__details">
           <strong>{displayName}</strong>

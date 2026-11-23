@@ -1,0 +1,13 @@
+.project-updates-editor{display:grid;gap:14px}
+.project-updates-editor__item{display:grid;gap:15px;padding:16px;border:1px solid #555;border-radius:7px;background:#090909}
+.project-updates-editor__heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.project-updates-editor__heading strong{color:#ffc45a;font-size:14px}
+.project-updates-editor__heading button{border:0;background:none;color:#e8a8a8;font-size:12px;cursor:pointer}
+.project-updates-editor__row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.project-updates-editor label,.project-updates-editor__image{display:grid;gap:7px;color:#eee;font-size:12px;font-weight:700}
+.project-updates-editor input,.project-updates-editor textarea{box-sizing:border-box;width:100%;min-width:0;padding:10px 12px;border:1px solid #626262;border-radius:5px;background:#000;color:#fff;font:inherit;font-size:13px}
+.project-updates-editor textarea{resize:vertical;line-height:1.6}
+.project-updates-editor__image img{display:block;width:min(100%,440px);aspect-ratio:16/9;object-fit:contain;border:1px solid #555;border-radius:5px;background:#000}
+.project-updates-editor__image small{color:#aaa;font-size:11px;font-weight:400}
+.project-updates-editor__add{justify-self:start;padding:9px 12px;border:1px solid #b88938;border-radius:5px;background:#191307;color:#ffc45a;font-size:12px;font-weight:800;cursor:pointer}
+@media(max-width:700px){.project-updates-editor__row{grid-template-columns:1fr}}

@@ -1,0 +1,8 @@
+.member-status-badge{display:inline-flex;align-items:center;justify-content:center;width:max-content;padding:5px 9px;border:1px solid currentColor;border-radius:4px;background:transparent;font-size:12px;font-weight:500;line-height:1.2;white-space:nowrap}
+.member-status-badge--active{color:#f2f2f2}
+.member-status-badge--resting{color:#999}
+.member-status-badge--alumniEnrolled{color:#b89ce8}
+.member-status-badge--alumniGraduated{color:#9273bf}
+.member-status-badge--withdrawn{color:#ef6262}
+.member-list-avatar{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border:1px solid #555;border-radius:50%;color:#ddd;font-size:17px}
+.member-list-identity{display:grid;gap:5px;min-width:0}

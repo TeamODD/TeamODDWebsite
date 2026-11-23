@@ -15,7 +15,7 @@
 }
 
 .home-image-text-title {
-  font-family: Helvetica75;
+  font-family: "SBAggro", "Pretendard", sans-serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 700;
@@ -28,7 +28,7 @@
 }
 
 .home-image-text {
-  font-family: Pretendard;
+  font-family: "SBAggro", "Pretendard", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
